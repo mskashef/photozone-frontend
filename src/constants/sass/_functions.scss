@@ -1,0 +1,26 @@
+@mixin borderRadius($value) {
+  -webkit-border-radius: $value;
+  -moz-border-radius: $value;
+  border-radius: $value;
+}
+@mixin boxShadow($value) {
+  -webkit-box-shadow: $value;
+  -moz-box-shadow: $value;
+  box-shadow: $value;
+}
+@mixin row {
+  display: flex;
+  flex-direction: row;
+}
+@mixin col {
+  display: flex;
+  flex-direction: column;
+}
+@mixin dimension($w, $h) {
+  width: $w;
+  $height: $h;
+}
+@mixin dimension($v) {
+  width: $v;
+  height: $v;
+}
