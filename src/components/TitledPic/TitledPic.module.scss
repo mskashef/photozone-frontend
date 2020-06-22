@@ -13,7 +13,7 @@
 }
 .img {
   @include borderRadius(100%);
-  @include dimension(50px);
+  @include square(50px);
   -webkit-background-size: contain;
   background-size: contain;
   background-position: center;

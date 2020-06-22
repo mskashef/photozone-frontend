@@ -18,9 +18,9 @@
 }
 @mixin dimension($w, $h) {
   width: $w;
-  $height: $h;
+  height: $h;
 }
-@mixin dimension($v) {
+@mixin square($v) {
   width: $v;
   height: $v;
 }

@@ -14,6 +14,7 @@ and the browser will automatically open this address: `localhost:3000`
 Here you'll see the API documentation of the components created in this project.
 
 ## TitledPic
+Used in many other container components.
 - props
 
 | prop    | value  | description   |
@@ -24,6 +25,21 @@ Here you'll see the API documentation of the components created in this project.
 
 - methods
 
-| method  | description                      | description   |
+| method  | arguments                      | description   |
 |---------|----------------------------------|---------------|
-| onClick | Executed when users clicks on it | The image url |
+| onClick | event object | Executed when users clicks on it |
+
+
+## OrangeButton
+Just a button
+- props
+
+| prop    | value  | description   |
+|---------|--------|---------------|
+| text    | string |  Button text  |
+
+- methods
+
+| method  | arguments                      | description   |
+|---------|----------------------------------|---------------|
+| onClick | event object | Executed when users clicks on it|
