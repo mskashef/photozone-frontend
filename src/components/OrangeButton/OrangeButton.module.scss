@@ -1,0 +1,32 @@
+@import "../../constants/sass/functions";
+.TitledPic {
+  display: flex;
+  flex-direction: row;
+}
+.TitleContainer {
+  @include col;
+  justify-content: center;
+  padding-left: 10px;
+}
+.TitledPic > * {
+  margin: 0;
+}
+.img {
+  @include borderRadius(100%);
+  @include dimension(50px);
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-position: center;
+}
+
+.title {
+  font-weight: bold;
+  color: #333333;
+  margin: 0;
+  font-size: 15px;
+}
+.caption {
+  color: #9F9F9F;
+  margin: 0;
+  font-size: 15px;
+}
