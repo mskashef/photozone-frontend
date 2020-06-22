@@ -13,7 +13,7 @@ and the browser will automatically open this address: `localhost:3000`
 # Components Documentation
 Here you'll see the API documentation of the components created in this project.
 
-## TitledPic
+## Thumbnail
 Used in many other container components.
 - props
 
@@ -36,7 +36,24 @@ Just a button
 
 | prop    | value  | description   |
 |---------|--------|---------------|
-| text    | string |  Button text  |
+| text    | string, node, array of nodes |  Button text  |
+
+- methods
+
+| method  | arguments                      | description   |
+|---------|----------------------------------|---------------|
+| onClick | event object | Executed when users clicks on it|
+
+
+
+## Thumbnail
+Just a button
+- props
+
+| prop    | value  | description   |
+|---------|--------|---------------|
+| src    | string |  src of the image  |
+| title    | string |  the text chat will show on hover  |
 
 - methods
 
