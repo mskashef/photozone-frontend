@@ -1,17 +1,30 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
-import OrangeButton from "./OrangeButton";
+import TabSelection from "./TabSelection";
 
-it('sums numbers', () => {
+it('TabSelection Test', () => {
     const func = sinon.spy();
     const wrapper = shallow(
-        <OrangeButton
-            text={'text'}
-            onClick={func}
+        <TabSelection
+            tabs={['Posts','Users']}
+            activeTab={'Users'}
+            onTabChange={func}
         />
     );
-    expect(wrapper.contains('text')).toEqual(true);
-    wrapper.simulate('click');
-    expect(func).toHaveProperty('callCount', 1);
+
+    wrapper.find('div#Posts').simulate('click');
+    wrapper.find('div#Users').simulate('click');
+    expect(func).toHaveProperty('callCount', 2);
+
+    wrapper.setProps({
+        activeTab: 'Posts'
+    });
+    expect(wrapper.find("div.TabSelectionActiveTab").first().text()).toEqual('Posts');
+
+    wrapper.setProps({
+        activeTab: 'Users'
+    });
+    expect(wrapper.find("div.TabSelectionActiveTab").first().text()).toEqual('Users');
+
 });

@@ -1,20 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import classes from './App.module.css';
 import TitledPic from './components/TitledPic/TitledPic';
 import OrangeButton from "./components/OrangeButton/OrangeButton";
 import Thumbnail from "./components/Thumbnail/Thumbnail";
 import PageDetails from "./components/PageDetails/PageDetails";
+import TabSelection from "./components/TabSelection/TabSelection";
 
 function App() {
+    const [tab, setTab] = useState('Users');
     return (
         <div className={classes.a}>
-            <PageDetails
-                followers={10}
-                photos={10}
-                followings={10}
+            <TabSelection
+                tabs={['Posts','Users']}
+                activeTab={tab}
+                onTabChange={(activeTab) => {setTab(activeTab)}}
             />
         </div>
     );
 }
+
 export default App;

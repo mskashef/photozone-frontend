@@ -44,8 +44,6 @@ Just a button
 |---------|----------------------------------|---------------|
 | onClick | event object | Executed when users clicks on it|
 
-
-
 ## Thumbnail
 Just a button
 - props
@@ -61,7 +59,6 @@ Just a button
 |---------|----------------------------------|---------------|
 | onClick | event object | Executed when users clicks on it|
 
-
 ## PageDetails
 Contains some details of a page like followers count, followings count and photos count...
 - props
@@ -71,4 +68,23 @@ Contains some details of a page like followers count, followings count and photo
 | followers    | number |  # of followers  |
 | followings    | number |  # of followings  |
 | photos    | number |  # of photos  |
+
+## TabSelection
+A component for selecting between several tabs.
+- props
+
+| prop    | value  | description   |
+|---------|--------|---------------|
+| tabs    | array of strings |  a Javascript array of strings that contains the tabs titles |
+| activeTab    | string |  Text value of the active tab  |
+| onTabChange    | string |  the text chat will show on hover  |
+
+- methods
+
+| method  | arguments                      | description   |
+|---------|----------------------------------|---------------|
+| onTabChange | an string: Text value of the destination tab | Executed when user clicks on one of the tabs|
+
+
+
 

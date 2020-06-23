@@ -1,22 +1,32 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
-import classes from './OrangeButton.module.scss';
+import classes from './TabSelection.module.scss';
 
-const OrangeButton = props => {
+const TabSelection = props => {
     return (
-        <button className={classes.OrangeButton} onClick={props.onClick}>
-            {props.text}
-        </button>
+        <div className={classes.TabSelection}>
+            {
+                props.tabs.map(tab => {
+                    return (
+                        <div
+                            id={tab}
+                            key={tab}
+                            className={props.activeTab === tab ? [classes.tab, classes.active, 'TabSelectionActiveTab'].join(' ') : classes.tab}
+                            onClick={props.onTabChange.bind(this, tab)}
+                        >
+                            {tab}
+                        </div>
+                    )
+                })
+            }
+        </div>
     );
 };
 
-export default OrangeButton;
+export default TabSelection;
 
-OrangeButton.propTypes = {
-    text: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.node,
-        PropTypes.arrayOf(PropTypes.node)
-    ]),
-    onClick: PropTypes.func
+TabSelection.propTypes = {
+    tabs: PropTypes.arrayOf(PropTypes.string),
+    activeTab: PropTypes.string,
+    onTabChange: PropTypes.func
 };
