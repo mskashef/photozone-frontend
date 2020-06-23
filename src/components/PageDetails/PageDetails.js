@@ -1,22 +1,30 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
-import classes from './OrangeButton.module.scss';
+import classes from './PageDetails.module.scss';
 
-const OrangeButton = props => {
+const PageDetails = props => {
     return (
-        <button className={classes.OrangeButton} onClick={props.onClick}>
-            {props.text}
-        </button>
+        <div className={classes.PageDetails} onClick={props.onClick}>
+            <div className={classes.col}>
+                <div id="photosCount">{props.photos}</div>
+                <div>Photos</div>
+            </div>
+            <div className={classes.col}>
+                <div id="followersCount">{props.followers}</div>
+                <div>Followers</div>
+            </div>
+            <div className={classes.col}>
+                <div id="followingsCount">{props.followings}</div>
+                <div>Followings</div>
+            </div>
+        </div>
     );
 };
 
-export default OrangeButton;
+export default PageDetails;
 
-OrangeButton.propTypes = {
-    text: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.node,
-        PropTypes.arrayOf(PropTypes.node)
-    ]),
-    onClick: PropTypes.func
+PageDetails.propTypes = {
+    photos: PropTypes.number,
+    followers: PropTypes.number,
+    followings: PropTypes.number
 };

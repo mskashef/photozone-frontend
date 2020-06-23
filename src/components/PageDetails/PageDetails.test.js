@@ -1,17 +1,30 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import sinon from 'sinon';
-import OrangeButton from "./OrangeButton";
+import PageDetails from "./PageDetails";
 
-it('sums numbers', () => {
-    const func = sinon.spy();
+it('PageDetails test', () => {
+    const photos = 10;
+    const followers = 11;
+    const followings = 12;
+
     const wrapper = shallow(
-        <OrangeButton
-            text={'text'}
-            onClick={func}
+        <PageDetails
+            followers={followers}
+            photos={photos}
+            followings={followings}
         />
     );
-    expect(wrapper.contains('text')).toEqual(true);
-    wrapper.simulate('click');
-    expect(func).toHaveProperty('callCount', 1);
+    expect(wrapper.find("div").find("#photosCount").text()).toEqual(photos + "");
+    expect(wrapper.find("div").find("#followersCount").text()).toEqual(followers + "");
+    expect(wrapper.find("div").find("#followingsCount").text()).toEqual(followings + "");
+
+    wrapper.setProps({
+        followers: 13,
+        photos: 14,
+        followings: 15,
+    });
+
+    expect(wrapper.find("div").find("#followersCount").text()).toEqual("13");
+    expect(wrapper.find("div").find("#photosCount").text()).toEqual("14");
+    expect(wrapper.find("div").find("#followingsCount").text()).toEqual("15");
 });

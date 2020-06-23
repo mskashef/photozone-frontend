@@ -30,7 +30,7 @@ Used in many other container components.
 | onClick | event object | Executed when users clicks on it |
 
 
-## OrangeButton
+## PageDetails
 Just a button
 - props
 
@@ -60,3 +60,15 @@ Just a button
 | method  | arguments                      | description   |
 |---------|----------------------------------|---------------|
 | onClick | event object | Executed when users clicks on it|
+
+
+## PageDetails
+Contains some details of a page like followers count, followings count and photos count...
+- props
+
+| prop    | value  | description   |
+|---------|--------|---------------|
+| followers    | number |  # of followers  |
+| followings    | number |  # of followings  |
+| photos    | number |  # of photos  |
+
