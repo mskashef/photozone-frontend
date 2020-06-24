@@ -45,7 +45,7 @@ Just a button
 | onClick | event object | Executed when users clicks on it|
 
 ## Thumbnail
-Just a button
+Thumbnail image
 - props
 
 | prop    | value  | description   |
