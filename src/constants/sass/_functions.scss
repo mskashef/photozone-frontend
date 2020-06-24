@@ -24,3 +24,6 @@
   width: $v;
   height: $v;
 }
+@mixin cardShadow {
+  @include boxShadow (0 5px 20px rgba(0,0,0,0.2));
+}

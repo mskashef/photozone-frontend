@@ -1,7 +1,7 @@
 @import "../../constants/sass/functions";
 .TitledPic {
-  display: flex;
-  flex-direction: row;
+  @include row;
+  align-items: center;
 }
 .TitleContainer {
   @include col;
@@ -13,7 +13,7 @@
 }
 .img {
   @include borderRadius(100%);
-  @include square(50px);
+  @include square(40px);
   -webkit-background-size: cover;
   background-size: cover;
   background-position: center;

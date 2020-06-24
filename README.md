@@ -13,7 +13,7 @@ and the browser will automatically open this address: `localhost:3000`
 # Components Documentation
 Here you'll see the API documentation of the components created in this project.
 
-## Thumbnail
+## TitledPic
 Used in many other container components.
 - props
 
@@ -22,12 +22,13 @@ Used in many other container components.
 | img     | string | The image url |
 | title   | string | Title         |
 | caption | string | Caption       |
+| userId | string | the user's username in the database       |
 
 - methods
 
 | method  | arguments                      | description   |
 |---------|----------------------------------|---------------|
-| onClick | event object | Executed when users clicks on it |
+| onClick | userId: string -> the user's username in the database | Executed when users clicks on it |
 
 
 ## PageDetails
@@ -69,7 +70,7 @@ Contains some details of a page like followers count, followings count and photo
 | followings    | number |  # of followings  |
 | photos    | number |  # of photos  |
 
-## TitleBar
+## TabSelection
 A component for selecting between several tabs.
 - props
 
@@ -97,3 +98,24 @@ Just a Title bar with an empty body which the programmer can fill it with some e
 
 
 
+
+## Post
+Post Card Component
+
+- props
+
+| prop    | value  | description   |
+|---------|--------|---------------|
+| title | a string | Title of the post |
+| photo | a string | url of the post photo |
+| publisherName | a string | name of the post publisher |
+| publisherProfPic | a string | url of the publisher prodile picture |
+| moreOptions | array of objects with shape: {title: a_string, onSelect: a_function (params: postId)}} |  |
+| postId | a string | id of the post in the database |
+| publisherId | a string | username of the post publisher |
+
+- methods
+
+| method  | arguments                      | description   |
+|---------|----------------------------------|---------------|
+| onPublisherClick | a string: username of the publisher | Executed when user clicks on the post publisher|
