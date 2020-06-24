@@ -69,7 +69,7 @@ Contains some details of a page like followers count, followings count and photo
 | followings    | number |  # of followings  |
 | photos    | number |  # of photos  |
 
-## TabSelection
+## TitleBar
 A component for selecting between several tabs.
 - props
 
@@ -85,6 +85,15 @@ A component for selecting between several tabs.
 |---------|----------------------------------|---------------|
 | onTabChange | an string: Text value of the destination tab | Executed when user clicks on one of the tabs|
 
+
+
+## TitleBar
+Just a Title bar with an empty body which the programmer can fill it with some elements.
+- props
+
+| prop    | value  | description   |
+|---------|--------|---------------|
+| children    | anything that can be rendered in react | The children of the TitleBar goes here. |
 
 
 

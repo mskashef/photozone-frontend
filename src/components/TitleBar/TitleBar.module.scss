@@ -1,0 +1,10 @@
+@import "../../constants/sass/functions";
+
+.TitleBar {
+  @include dimension(100%, 40px);
+  @include row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 5px;
+  @include boxShadow(0 5px 5px rgba(0,0,0,0.1));
+}
