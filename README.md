@@ -88,13 +88,13 @@ A component for selecting between several tabs.
 
 
 
-## TitleBar
+## NewPostSvgIcon
 Just a Title bar with an empty body which the programmer can fill it with some elements.
 - props
 
 | prop    | value  | description   |
 |---------|--------|---------------|
-| children    | anything that can be rendered in react | The children of the TitleBar goes here. |
+| children    | anything that can be rendered in react | The children of the NewPostSvgIcon goes here. |
 
 
 
@@ -119,3 +119,52 @@ Post Card Component
 | method  | arguments                      | description   |
 |---------|----------------------------------|---------------|
 | onPublisherClick | a string: username of the publisher | Executed when user clicks on the post publisher|
+
+
+
+## HomeSvgIcon
+It's just a home icon used in the NavBar. I put it inside of a component cause:
+1. it's a svg icon
+2. it has two states (so has two colors): one: active state with color #333 and non active state with color: #777
+- props
+
+| prop    | value  | description   |
+|---------|--------|---------------|
+| active | a boolean | Identifies that if this icon is selected tab |
+| color | a string | Regular color |
+| activeColor | a string | Active color |
+
+- methods
+
+| prop    | arguments  | description   |
+|---------|--------|---------------|
+| onClick | event object | Executed when user clicks on it |
+
+
+## SearchSvgIcon
+Same as HomeSvgIcon.
+
+## NewPostSvgIcon
+Same as HomeSvgIcon.
+
+## ChatsSvgIcon
+Same as HomeSvgIcon.
+
+## ProfileSvgIcon
+Same as HomeSvgIcon.
+
+
+
+## NavBar
+The navigation bar used in many pages
+- props
+
+| prop    | value  | description   |
+|---------|--------|---------------|
+| activeTab | a string | The initially opened tab |
+
+- methods
+
+| prop    | arguments  | description   |
+|---------|--------|---------------|
+| onChangeTab | a string: tab | Executed when user clicks on a tab |

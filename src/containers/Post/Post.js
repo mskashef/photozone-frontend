@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useState} from 'react';
 import * as PropTypes from 'prop-types';
 import classes from './Post.module.scss';
 import TitledPic from "../../components/TitledPic/TitledPic";
@@ -6,7 +6,7 @@ import moreButton from '../../assets/more.svg';
 import {Menu, MenuItem} from '@material-ui/core';
 
 const Post = props => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
     const handleClick = (event) => {
@@ -18,7 +18,7 @@ const Post = props => {
     };
     return (
         <div className={classes.Post}>
-            <div className={classes.photo} style={{backgroundImage: `url(${props.photo})`}}></div>
+            <div className={classes.photo} style={{backgroundImage: `url(${props.photo})`}} />
             <div className={classes.details}>
                 <div className={classes.userContainer}>
                     <TitledPic
@@ -29,7 +29,7 @@ const Post = props => {
                         onClick={props.onPublisherClick}
                     />
                 </div>
-                <img ref={anchorEl} className={classes.moreButton} src={moreButton} onClick={handleClick}/>
+                <img className={classes.moreButton} src={moreButton} onClick={handleClick}/>
 
                 <Menu
                     id="long-menu"
@@ -40,7 +40,9 @@ const Post = props => {
                 >
                     {
                         props.moreOptions.map(option => (
-                            <MenuItem key={option} selected={option === 'Pyxis'} onClick={() => {
+                            <MenuItem
+                                key={option.title}
+                                selected={option === 'Pyxis'} onClick={() => {
                                 option.onSelect(props.postId);
                                 handleClose();
                             }}>

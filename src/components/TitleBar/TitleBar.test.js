@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import TitleBar from "./TitleBar";
 
-it('TitleBar Test', () => {
+it('NewPostSvgIcon Test', () => {
     const children1 = <h1>Hello</h1>;
     const children2 = <h2>Hello</h2>;
     const wrapper = shallow(

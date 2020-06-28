@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import sinon from 'sinon';
 import Post from "./Post";
 
-it('TitleBar Test', () => {
+it('NewPostSvgIcon Test', () => {
     const func = sinon.spy();
     const wrapper = shallow(
         <Post

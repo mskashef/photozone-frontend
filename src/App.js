@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, Fragment, useEffect} from 'react';
 import './App.css';
 import classes from './App.module.css';
 import Thumbnail from "./components/Thumbnail/Thumbnail";
@@ -8,16 +8,33 @@ import {TextField } from '@material-ui/core';
 import TitleBar from "./components/TitleBar/TitleBar";
 import Post from "./containers/Post/Post";
 import TitledPic from "./components/TitledPic/TitledPic";
+import {BrowserRouter, Route} from "react-router-dom";
+import NavBar from "./components/NavBar/NavBar";
 
 function App() {
-    const [tab, setTab] = useState('Users');
+
     return (
-        <div className={classes.a}>
+        <div className={classes.App}>
+
+            <BrowserRouter>
+                <Route path={'/'} exact render={() => {
+                    return (
+                        <h1>Home</h1>
+                    )
+                }} />
+                <Route path={'/addUser'} exact render={() => {
+                    return (
+                        <h1>Add User</h1>
+                    )
+                }} />
+            </BrowserRouter>
+
             <TitleBar>
                 PhotoZone
             </TitleBar>
+
             <Post
-                postId={123}
+                postId={123 + ""}
                 publisherId={"mskashef"}
                 title="Post Title Goes Here"
                 photo="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRC3imy89z6szdIlZddmWZqxF2d3Nm5kAUH5nKiXD8qVjU927EI&usqp=CAU"
@@ -30,6 +47,7 @@ function App() {
                 ]}
             />
 
+            <NavBar onChangeTab={(tab) => {}} />
         </div>
     );
 }
