@@ -1,13 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
-import Post from "./Post";
+import Posts from "./Posts";
 
 it('NewPostSvgIcon Test', () => {
     const func = sinon.spy();
     const wrapper = shallow(
-        <Post
-            tabs={['PageBody','Users']}
+        <Posts
+            tabs={['Posts','Users']}
             activeTab={'Users'}
             onTabChange={func}
         />
@@ -18,9 +18,9 @@ it('NewPostSvgIcon Test', () => {
     expect(func).toHaveProperty('callCount', 2);
 
     wrapper.setProps({
-        activeTab: 'PageBody'
+        activeTab: 'Posts'
     });
-    expect(wrapper.find("div.TabSelectionActiveTab").first().text()).toEqual('PageBody');
+    expect(wrapper.find("div.TabSelectionActiveTab").first().text()).toEqual('Posts');
 
     wrapper.setProps({
         activeTab: 'Users'

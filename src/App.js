@@ -43,7 +43,7 @@ function App() {
                 onPublisherClick={() => {alert("a")}}
                 moreOptions={[
                     {title: "Copy link", onSelect: (postId) => {alert("Copy link")}},
-                    {title: "Save Post", onSelect: (postId) => {alert("Save Post")}},
+                    {title: "Save Posts", onSelect: (postId) => {alert("Save Posts")}},
                 ]}
             />
 

@@ -99,8 +99,8 @@ Just a Title bar with an empty body which the programmer can fill it with some e
 
 
 
-## Post
-Post Card Component
+## PageBody
+PageBody Card Component
 
 - props
 
@@ -168,3 +168,12 @@ The navigation bar used in many pages
 | prop    | arguments  | description   |
 |---------|--------|---------------|
 | onChangeTab | a string: tab | Executed when user clicks on a tab |
+
+
+## PageBody
+It's just a container for body content.
+- props
+
+| prop    | value  | description   |
+|---------|--------|---------------|
+| children | anything | Here we can insert anything that can be rendered as a react element |
