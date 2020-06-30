@@ -4,52 +4,80 @@ import classes from './App.module.css';
 import Thumbnail from "./components/Thumbnail/Thumbnail";
 import PageDetails from "./components/PageDetails/PageDetails";
 import TabSelection from "./components/TabSelection/TabSelection";
-import {TextField } from '@material-ui/core';
+import {TextField} from '@material-ui/core';
 import TitleBar from "./components/TitleBar/TitleBar";
 import Post from "./containers/Post/Post";
 import TitledPic from "./components/TitledPic/TitledPic";
 import {BrowserRouter, Route} from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
+import Posts from "./containers/Posts/Posts";
+import axios from "axios";
+import PageBody from "./containers/PageBody/PageBody";
+import Page from "./containers/Page/Page";
+import HomePage from "./pages/HomePage/HomePage";
+import {withRouter} from "react-router-dom";
+import Tag from "./components/Tag/Tag";
 
-function App() {
+
+function App(props) {
+
+    const [activeTab, setActiveTab] = useState("HomeSvgIcon");
+
+    const handlePageChange = (tab) => {
+        let url = "";
+        switch (tab) {
+            case "HomeSvgIcon":
+                url = "/";
+                break;
+            case "SearchSvgIcon":
+                url = "/search";
+                break;
+            case "NewPostSvgIcon":
+                url = "/newPost";
+                break;
+            case "ChatsSvgIcon":
+                url = "/chats";
+                break;
+            case "ProfileSvgIcon":
+                url = "/profile";
+                break;
+        }
+        setActiveTab(tab);
+        props.history.replace(url);
+    };
 
     return (
         <div className={classes.App}>
 
-            <BrowserRouter>
-                <Route path={'/'} exact render={() => {
-                    return (
-                        <h1>Home</h1>
-                    )
-                }} />
-                <Route path={'/addUser'} exact render={() => {
-                    return (
-                        <h1>Add User</h1>
-                    )
-                }} />
-            </BrowserRouter>
+            <Route path={'/'} exact render={() => {
+                return (
+                    <HomePage/>
+                )
+            }}/>
+            <Route path={'/search'} exact render={() => {
+                return (
+                    <div>
+                        <Tag value={"tag"}/>
+                        <Tag value={"tag"}/>
+                        <Tag value={"tag"}/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                    </div>
+                )
+            }}/>
+            {/*['/', '/search', '/chats', '/profile', '/newPost', '/savedPosts']*/}
+            <Route path={['/', '/search', '/chats', '/profile', '/newPost', '/savedPosts']} render={() => {
+                return (
+                    <NavBar activeTab={activeTab} onChangeTab={handlePageChange}/>
+                )
+            }}/>
 
-            <TitleBar>
-                PhotoZone
-            </TitleBar>
-
-            <Post
-                postId={123 + ""}
-                publisherId={"mskashef"}
-                title="Post Title Goes Here"
-                photo="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRC3imy89z6szdIlZddmWZqxF2d3Nm5kAUH5nKiXD8qVjU927EI&usqp=CAU"
-                publisherName="Oil Art"
-                publisherProfPic="https://i.pinimg.com/736x/50/df/34/50df34b9e93f30269853b96b09c37e3b.jpg"
-                onPublisherClick={() => {alert("a")}}
-                moreOptions={[
-                    {title: "Copy link", onSelect: (postId) => {alert("Copy link")}},
-                    {title: "Save Posts", onSelect: (postId) => {alert("Save Posts")}},
-                ]}
-            />
-
-            <NavBar onChangeTab={(tab) => {}} />
         </div>
     );
 }
 
-export default App;
+export default withRouter(App);

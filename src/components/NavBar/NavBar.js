@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import * as PropTypes from 'prop-types';
 import classes from './NavBar.module.scss';
 import HomeSvgIcon from "../HomeSvgIcon/HomeSvgIcon";
@@ -6,13 +6,20 @@ import ChatsSvgIcon from "../ChatsSvgIcon/ChatsSvgIcon";
 import ProfileSvgIcon from "../ProfileSvgIcon/ProfileSvgIcon";
 import SearchSvgIcon from "../SearchSvgIcon/SearchSvgIcon";
 import NewPostSvgIcon from "../NewPostSvgIcon/NewPostSvgIcon";
+import { withRouter } from "react-router";
 
 const NavBar = props => {
     const [active, setActive] = useState("HomeSvgIcon");
     const handleChange = tab => {
         setActive(tab);
-        props.onChangeTab(tab)
+        props.onChangeTab(tab);
     };
+    const handlePageChange = (url) => {
+        props.history.replace(url);
+    };
+    useEffect(() => {
+        // props.history.push('/posts');
+    }, []);
     return (
         <div className={classes.NavBar}>
             <HomeSvgIcon
@@ -49,7 +56,7 @@ const NavBar = props => {
     );
 };
 
-export default NavBar;
+export default withRouter(NavBar);
 
 NavBar.propTypes = {
     activeTab: PropTypes.string,

@@ -7,20 +7,20 @@ it('NewPostSvgIcon Test', () => {
     const func = sinon.spy();
     const wrapper = shallow(
         <TabSelection
-            tabs={['PageBody','Users']}
+            tabs={['HomePage','Users']}
             activeTab={'Users'}
             onTabChange={func}
         />
     );
 
-    wrapper.find('div#PageBody').simulate('click');
+    wrapper.find('div#HomePage').simulate('click');
     wrapper.find('div#Users').simulate('click');
     expect(func).toHaveProperty('callCount', 2);
 
     wrapper.setProps({
-        activeTab: 'PageBody'
+        activeTab: 'HomePage'
     });
-    expect(wrapper.find("div.TabSelectionActiveTab").first().text()).toEqual('PageBody');
+    expect(wrapper.find("div.TabSelectionActiveTab").first().text()).toEqual('HomePage');
 
     wrapper.setProps({
         activeTab: 'Users'

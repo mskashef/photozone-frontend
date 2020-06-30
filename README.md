@@ -99,8 +99,8 @@ Just a Title bar with an empty body which the programmer can fill it with some e
 
 
 
-## PageBody
-PageBody Card Component
+## HomePage
+HomePage Card Component
 
 - props
 
@@ -177,3 +177,20 @@ It's just a container for body content.
 | prop    | value  | description   |
 |---------|--------|---------------|
 | children | anything | Here we can insert anything that can be rendered as a react element |
+
+## Page
+It's just a container for content of a page (it's a full screen empty page).
+- props
+
+| prop    | value  | description   |
+|---------|--------|---------------|
+| children | anything | Here we can insert anything that can be rendered as a react element |
+
+
+## Tag
+It's just a tag displayed under the post's description.
+- props
+
+| prop    | value  | description   |
+|---------|--------|---------------|
+| value | string | the string value of the tag |
