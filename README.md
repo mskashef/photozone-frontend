@@ -186,6 +186,9 @@ It's just a container for content of a page (it's a full screen empty page).
 |---------|--------|---------------|
 | children | anything | Here we can insert anything that can be rendered as a react element |
 
+## HomePage
+The Home Page component displayed in `/` route.
+
 
 ## Tag
 It's just a tag displayed under the post's description.
@@ -194,3 +197,12 @@ It's just a tag displayed under the post's description.
 | prop    | value  | description   |
 |---------|--------|---------------|
 | value | string | the string value of the tag |
+
+
+## Tags
+A container for multiple "Tag" components.
+- props
+
+| prop    | value  | description   |
+|---------|--------|---------------|
+| items | array of strings | An array of tags string values|

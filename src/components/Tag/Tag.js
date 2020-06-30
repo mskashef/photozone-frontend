@@ -4,9 +4,9 @@ import classes from './Tag.module.scss';
 
 const Tag = props => {
     return (
-        <button className={classes.Tag}>
+        <div className={classes.Tag}>
             {props.value}
-        </button>
+        </div>
     );
 };
 

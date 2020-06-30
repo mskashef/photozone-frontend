@@ -17,6 +17,7 @@ import Page from "./containers/Page/Page";
 import HomePage from "./pages/HomePage/HomePage";
 import {withRouter} from "react-router-dom";
 import Tag from "./components/Tag/Tag";
+import Tags from "./containers/Tags/Tags";
 
 
 function App(props) {
@@ -57,9 +58,7 @@ function App(props) {
             <Route path={'/search'} exact render={() => {
                 return (
                     <div>
-                        <Tag value={"tag"}/>
-                        <Tag value={"tag"}/>
-                        <Tag value={"tag"}/>
+                        <Tags items={["tag1","tag2","tag3","tag4","tag5","tag6"]}/>
                         <br/>
                         <br/>
                         <br/>
