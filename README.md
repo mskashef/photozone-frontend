@@ -99,8 +99,8 @@ Just a Title bar with an empty body which the programmer can fill it with some e
 
 
 
-## HomePage
-HomePage Card Component
+## PostPage
+PostPage Card Component
 
 - props
 
@@ -187,7 +187,10 @@ It's just a container for content of a page (it's a full screen empty page).
 | children | anything | Here we can insert anything that can be rendered as a react element |
 
 ## HomePage
-The Home Page component displayed in `/` route.
+The Home Page component displayed in `/` path.
+
+## PostPage
+The Post page displayed in `/posts/:id` path.
 
 
 ## Tag

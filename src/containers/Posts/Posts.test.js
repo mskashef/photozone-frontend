@@ -13,7 +13,7 @@ it('NewPostSvgIcon Test', () => {
         />
     );
 
-    wrapper.find('div#HomePage').simulate('click');
+    wrapper.find('div#PostPage').simulate('click');
     wrapper.find('div#Users').simulate('click');
     expect(func).toHaveProperty('callCount', 2);
 

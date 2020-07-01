@@ -1,23 +1,12 @@
 import React, {useState, Fragment, useEffect} from 'react';
 import './App.css';
 import classes from './App.module.css';
-import Thumbnail from "./components/Thumbnail/Thumbnail";
-import PageDetails from "./components/PageDetails/PageDetails";
-import TabSelection from "./components/TabSelection/TabSelection";
-import {TextField} from '@material-ui/core';
-import TitleBar from "./components/TitleBar/TitleBar";
-import Post from "./containers/Post/Post";
-import TitledPic from "./components/TitledPic/TitledPic";
 import {BrowserRouter, Route} from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
-import Posts from "./containers/Posts/Posts";
-import axios from "axios";
-import PageBody from "./containers/PageBody/PageBody";
-import Page from "./containers/Page/Page";
 import HomePage from "./pages/HomePage/HomePage";
 import {withRouter} from "react-router-dom";
-import Tag from "./components/Tag/Tag";
 import Tags from "./containers/Tags/Tags";
+import PostPage from "./pages/PostPage/PostPage";
 
 
 function App(props) {
@@ -55,17 +44,9 @@ function App(props) {
                     <HomePage/>
                 )
             }}/>
-            <Route path={'/search'} exact render={() => {
+            <Route path={'/posts/:id'} exact render={() => {
                 return (
-                    <div>
-                        <Tags items={["tag1","tag2","tag3","tag4","tag5","tag6"]}/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                    </div>
+                    <PostPage />
                 )
             }}/>
             {/*['/', '/search', '/chats', '/profile', '/newPost', '/savedPosts']*/}
