@@ -11,6 +11,7 @@ import saved from "../../assets/saved.svg";
 const HomePage = props => {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
+        if (props.componentDidMount) props.componentDidMount();
         axios.post("/getPosts", {a: 5}).then(res => {
             setPosts(res.data);
         });
@@ -32,5 +33,7 @@ const HomePage = props => {
 
 export default HomePage;
 
-HomePage.propTypes = {};
+HomePage.propTypes = {
+    componentDidMount: PropTypes.func
+};
 HomePage.defaultProps = {};

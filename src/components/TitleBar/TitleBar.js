@@ -4,7 +4,7 @@ import classes from './TitleBar.module.scss';
 
 const TitleBar = props => {
     return (
-        <div className={classes.TitleBar}>
+        <div className={props.noShadow ? [classes.TitleBar, classes.noShadow].join(' ') : classes.TitleBar}>
             {props.children}
         </div>
     );
@@ -13,5 +13,6 @@ const TitleBar = props => {
 export default TitleBar;
 
 TitleBar.propTypes = {
-    children: PropTypes.any
+    children: PropTypes.any,
+    noShadow: PropTypes.bool
 };

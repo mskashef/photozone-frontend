@@ -13,10 +13,12 @@ import TitledPic from "../../components/TitledPic/TitledPic";
 import moreButton from "../../assets/more.svg";
 import {Menu, MenuItem} from "@material-ui/core";
 import Tags from "../../containers/Tags/Tags";
+import SearchBox from "../../components/SearchBox/SearchBox";
 
 const PostPage = props => {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
+        if (props.componentDidMount) props.componentDidMount();
         axios.post("/getPost", {a: 5}).then(res => {
             const data = res.data;
             setPostId(data.postId);
@@ -118,5 +120,7 @@ const PostPage = props => {
 
 export default withRouter(PostPage);
 
-PostPage.propTypes = {};
+PostPage.propTypes = {
+    componentDidMount: PropTypes.func
+};
 PostPage.defaultProps = {};

@@ -4,7 +4,7 @@ import classes from './OrangeButton.module.scss';
 
 const OrangeButton = props => {
     return (
-        <button className={classes.OrangeButton} onClick={props.onClick}>
+        <button style={props.style} className={classes.OrangeButton} onClick={props.onClick}>
             {props.text}
         </button>
     );
@@ -18,5 +18,6 @@ OrangeButton.propTypes = {
         PropTypes.node,
         PropTypes.arrayOf(PropTypes.node)
     ]),
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    style: PropTypes.object
 };

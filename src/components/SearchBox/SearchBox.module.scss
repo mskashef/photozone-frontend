@@ -1,11 +1,18 @@
 @import "../../constants/sass/functions";
 
-.OrangeButton {
-  background-color: #FBAB18;
-  @include dimension(100%, 40px);
+.SearchBox {
+  background-color: #F5F5F5;
+  @include dimension(100%, 30px);
   @include borderRadius(20px);
+  font-size: 15px;
+  @include row;
+  padding-right: 10px;
+}
+.input {
+  height: 100%;
+  padding-left: 10px;
+  flex: 1;
+  background: none;
   border: none;
-  cursor: pointer;
-  color: #FFFFFF;
   font-size: 15px;
 }

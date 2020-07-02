@@ -9,9 +9,7 @@ import NewPostSvgIcon from "../NewPostSvgIcon/NewPostSvgIcon";
 import { withRouter } from "react-router";
 
 const NavBar = props => {
-    const [active, setActive] = useState("HomeSvgIcon");
     const handleChange = tab => {
-        setActive(tab);
         props.onChangeTab(tab);
     };
     const handlePageChange = (url) => {
@@ -23,31 +21,31 @@ const NavBar = props => {
     return (
         <div className={classes.NavBar}>
             <HomeSvgIcon
-                active={active === "HomeSvgIcon"}
+                active={props.activeTab === "HomeSvgIcon"}
                 onClick={handleChange.bind(this, "HomeSvgIcon")}
                 color="#999"
                 activeColor="#333"
             />
             <SearchSvgIcon
-                active={active === "SearchSvgIcon"}
+                active={props.activeTab === "SearchSvgIcon"}
                 onClick={handleChange.bind(this, "SearchSvgIcon")}
                 color="#999"
                 activeColor="#333"
             />
             <NewPostSvgIcon
-                active={active === "NewPostSvgIcon"}
+                active={props.activeTab === "NewPostSvgIcon"}
                 onClick={handleChange.bind(this, "NewPostSvgIcon")}
                 color="#999"
                 activeColor="#333"
             />
             <ChatsSvgIcon
-                active={active === "ChatsSvgIcon"}
+                active={props.activeTab === "ChatsSvgIcon"}
                 onClick={handleChange.bind(this, "ChatsSvgIcon")}
                 color="#999"
                 activeColor="#333"
             />
             <ProfileSvgIcon
-                active={active === "ProfileSvgIcon"}
+                active={props.activeTab === "ProfileSvgIcon"}
                 onClick={handleChange.bind(this, "ProfileSvgIcon")}
                 color="#999"
                 activeColor="#333"

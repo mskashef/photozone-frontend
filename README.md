@@ -23,6 +23,8 @@ Used in many other container components.
 | title   | string | Title         |
 | caption | string | Caption       |
 | userId | string | the user's username in the database       |
+| imageStyle | style object | for applying css props to image    |
+| titleStyle | style object | for applying css props to title    |
 
 - methods
 
@@ -31,13 +33,14 @@ Used in many other container components.
 | onClick | userId: string -> the user's username in the database | Executed when users clicks on it |
 
 
-## PageDetails
+## OrangeButton
 Just a button
 - props
 
 | prop    | value  | description   |
 |---------|--------|---------------|
 | text    | string, node, array of nodes |  Button text  |
+| style    | style object |  a place for applying css props  |
 
 - methods
 
@@ -45,8 +48,8 @@ Just a button
 |---------|----------------------------------|---------------|
 | onClick | event object | Executed when users clicks on it|
 
-## Thumbnail
-Thumbnail image
+## EmptyThumbnail
+EmptyThumbnail image
 - props
 
 | prop    | value  | description   |
@@ -99,8 +102,8 @@ Just a Title bar with an empty body which the programmer can fill it with some e
 
 
 
-## PostPage
-PostPage Card Component
+## ChatsPage
+ChatsPage Card Component
 
 - props
 
@@ -189,7 +192,7 @@ It's just a container for content of a page (it's a full screen empty page).
 ## HomePage
 The Home Page component displayed in `/` path.
 
-## PostPage
+## ChatsPage
 The Post page displayed in `/posts/:id` path.
 
 

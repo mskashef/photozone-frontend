@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
-import Thumbnail from "./Thumbnail";
+import EmptyThumbnail from "./EmptyThumbnail";
 
 it('EmptyThumbnail Test', () => {
     const func = sinon.spy();
     const wrapper = shallow(
-        <Thumbnail
+        <EmptyThumbnail
             src={'imageUrl'}
             hoverTitle={'title'}
             onClick={func}
