@@ -45,7 +45,16 @@ const ProfilePage = props => {
     return (
         <Page>
             <TitleBar noShadow>
-                <div style={{width: 30, height: 30, position: 'absolute', top: 14, right: 5, cursor: 'pointer', textAlign: 'center'}}>
+                {props.isMe && <b>My Profile</b>}
+                <div style={{
+                    width: 30,
+                    height: 30,
+                    position: 'absolute',
+                    top: 14,
+                    right: 5,
+                    cursor: 'pointer',
+                    textAlign: 'center'
+                }}>
                     <img className={classes.moreButton} src={moreButton} onClick={handleClick} style={{height: 18}}/>
                     <Menu
                         id="long-menu"
@@ -71,9 +80,13 @@ const ProfilePage = props => {
                     </Menu>
                     {/*<img alt="" style={{cursor: 'pointer'}} src={saved}/>*/}
                 </div>
-                <div style={{width: 30, height: 30, position: 'absolute', left: 5, cursor: 'pointer'}}>
-                    <img alt="" style={{cursor: 'pointer'}} src={back} onClick={backButtonHandler} />
-                </div>
+                {
+                    props.isMe || (
+                        <div style={{width: 30, height: 30, position: 'absolute', left: 5, cursor: 'pointer'}}>
+                            <img alt="" style={{cursor: 'pointer'}} src={back} onClick={backButtonHandler}/>
+                        </div>
+                    )
+                }
             </TitleBar>
             <PageBody>
                 <TitledPic
@@ -81,13 +94,24 @@ const ProfilePage = props => {
                     caption={'@MSK.codes'}
                     imageStyle={{width: 100, height: 100, marginLeft: 10}}
                     titleStyle={{fontSize: 20}}
-                    onClick={() => {}} img={'https://p0.pikist.com/photos/3/647/lotus-sen-vietnam-pink-natural-flower-nature-summer-tree.jpg'}
+                    onClick={() => {
+                    }}
+                    img={'https://p0.pikist.com/photos/3/647/lotus-sen-vietnam-pink-natural-flower-nature-summer-tree.jpg'}
                 />
                 <div className={classes.about}>
                     Hey There I'm using PhotoZone!
                 </div>
-                <OrangeButton text={"Message"} onClick={() => {}} style={{width: 'calc(100% - 40px)', marginLeft: 20, height: 30}}/>
-                <PageDetails followers={10} followings={10} photos={10} />
+                {
+                    props.isMe || (
+                        <OrangeButton
+                            text={"Message"}
+                            onClick={() => {
+                            }}
+                            style={{width: 'calc(100% - 40px)', marginLeft: 20, height: 30}}
+                        />
+                    )
+                }
+                <PageDetails followers={10} followings={10} photos={10}/>
                 <div className={classes.postsContainer}>
                     {
                         posts.map(post => (
@@ -115,6 +139,7 @@ const ProfilePage = props => {
 export default withRouter(ProfilePage);
 
 ProfilePage.propTypes = {
-    componentDidMount: PropTypes.func
+    componentDidMount: PropTypes.func,
+    isMe: PropTypes.bool,
 };
 ProfilePage.defaultProps = {};

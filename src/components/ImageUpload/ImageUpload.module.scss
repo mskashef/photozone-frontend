@@ -1,0 +1,28 @@
+@import "../../constants/sass/functions";
+
+.container {
+  @include dimension(100%, auto);
+  @include borderRadius(20px);
+  border: 2px dashed #E2E2E2;
+  color: #000000;
+  font-size: 15px;
+  @include col;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+  @include noUserSelect;
+  cursor: pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 200px;
+}
+
+.text {
+  margin-top: 5px;
+  background-color: #E2E2E2;
+  padding: 2px 5px;
+  @include borderRadius(5px);
+  max-width: 100%;
+  overflow-x: auto;
+}

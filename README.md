@@ -33,7 +33,7 @@ Used in many other container components.
 | onClick | userId: string -> the user's username in the database | Executed when users clicks on it |
 
 
-## OrangeButton
+## ImageUpload
 Just a button
 - props
 
@@ -102,8 +102,8 @@ Just a Title bar with an empty body which the programmer can fill it with some e
 
 
 
-## ChatsPage
-ChatsPage Card Component
+## NewPostPage
+NewPostPage Card Component
 
 - props
 
@@ -192,7 +192,7 @@ It's just a container for content of a page (it's a full screen empty page).
 ## HomePage
 The Home Page component displayed in `/` path.
 
-## ChatsPage
+## NewPostPage
 The Post page displayed in `/posts/:id` path.
 
 

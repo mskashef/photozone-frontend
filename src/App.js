@@ -11,6 +11,7 @@ import SearchPage from "./pages/SearchPage/SearchPage";
 import ChatsPage from "./pages/ChatsPage/ChatsPage";
 import store from 'store';
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import NewPostPage from "./pages/NewPostPage/NewPostPage";
 
 function App(props) {
 
@@ -46,8 +47,6 @@ function App(props) {
         store.set('MainTabSelection', tab);
     };
 
-
-
     return (
         <div className={classes.App}>
 
@@ -71,9 +70,19 @@ function App(props) {
                     <ChatsPage componentDidMount={() => {handlePageChange("ChatsSvgIcon")}} />
                 )
             }}/>
+            <Route path={'/newPost'} exact render={() => {
+                return (
+                    <NewPostPage componentDidMount={() => {handlePageChange("NewPostSvgIcon")}} />
+                )
+            }}/>
             <Route path={'/profile'} exact render={() => {
                 return (
-                    <ProfilePage componentDidMount={() => {handlePageChange("ProfileSvgIcon")}} />
+                    <ProfilePage isMe componentDidMount={() => {handlePageChange("ProfileSvgIcon")}} />
+                )
+            }}/>
+            <Route path={'/users/:id'} exact render={() => {
+                return (
+                    <ProfilePage componentDidMount={() => {}} />
                 )
             }}/>
             {/*['/', '/search', '/chats', '/profile', '/newPost', '/savedPosts']*/}

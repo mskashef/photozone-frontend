@@ -6,7 +6,7 @@ import Tag from "../../components/Tag/Tag";
 const Tags = props => {
     return (
         <div className={classes.Tags}>
-            {props.items.map(tag => <Tag key={tag} value={tag}/>)}
+            {props.items.map(tag => <Tag key={tag + ":" + Math.random()} value={tag}/>)}
         </div>
     );
 };

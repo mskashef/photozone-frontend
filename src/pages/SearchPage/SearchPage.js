@@ -113,6 +113,7 @@ const SearchPage = props => {
                         </div>
                     )
                 }
+
             </PageBody>
         </Page>
     );
