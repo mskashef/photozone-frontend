@@ -212,3 +212,23 @@ A container for multiple "Tag" components.
 | prop    | value  | description   |
 |---------|--------|---------------|
 | items | array of strings | An array of tags string values|
+
+
+## ImageUpload
+The Image upload component used in `NewPostPage` for uploading post photo
+- props
+
+| prop    | value  | description   |
+|---------|--------|---------------|
+| text | string | the text displayed inside of the box|
+| style | style object | for applying css props |
+| inputId | string | a unique id for the file input|
+| onImageAdded | array of strings | An array of tags string values|
+
+
+
+- methods
+
+| prop    | arguments  | description   |
+|---------|--------|---------------|
+| onImageAdded | event object | Executed when user selects an image from gallery or etc. |
