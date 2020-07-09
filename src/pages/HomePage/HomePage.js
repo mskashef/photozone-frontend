@@ -6,15 +6,26 @@ import PageBody from "../../containers/PageBody/PageBody";
 import Posts from "../../containers/Posts/Posts";
 import Page from "../../containers/Page/Page";
 import axios from "axios";
+import store from "store";
 import saved from "../../assets/saved.svg";
+import {withRouter} from 'react-router-dom';
+
+import {
+    RecoilRoot,
+    atom,
+    selector,
+    useRecoilState,
+    useRecoilValue,
+} from 'recoil';
 
 const HomePage = props => {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
         if (props.componentDidMount) props.componentDidMount();
-        axios.post("/getPosts", {a: 5}).then(res => {
+        axios.post("/getPosts", {username: store.get('username')}, {withCredentials: true}).then(res => {
+            console.log(res);
             setPosts(res.data);
-        });
+        }).catch(() => {});
     }, []);
     return (
         <Page>
@@ -31,7 +42,7 @@ const HomePage = props => {
     );
 };
 
-export default HomePage;
+export default withRouter(HomePage);
 
 HomePage.propTypes = {
     componentDidMount: PropTypes.func

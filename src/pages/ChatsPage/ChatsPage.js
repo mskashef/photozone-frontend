@@ -13,7 +13,7 @@ import TitleBar from "../../components/TitleBar/TitleBar";
 const ChatsPage = props => {
     useEffect(() => {
         if (props.componentDidMount) props.componentDidMount();
-        axios.post('/SearchInUsers',{}).then(res => {
+        axios.post('/SearchInUsers',{}, {withCredentials: true}).then(res => {
             setUsers(res.data);
         });
     }, []);

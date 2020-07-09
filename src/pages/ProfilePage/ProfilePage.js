@@ -24,7 +24,7 @@ import {Menu, MenuItem} from "@material-ui/core";
 const ProfilePage = props => {
     useEffect(() => {
         if (props.componentDidMount) props.componentDidMount();
-        axios.post('/searchInPosts', {}).then(res => {
+        axios.post('/searchInPosts', {}, {withCredentials: true}).then(res => {
             setPosts(res.data)
         });
     }, []);

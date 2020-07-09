@@ -1,40 +1,51 @@
 import React from 'react';
+import axios from 'axios';
+import store from 'store';
 import * as PropTypes from 'prop-types';
 import classes from './Posts.module.scss';
 import Post from "../Post/Post";
+import {backendBaseUrl} from '../../constants/js/constants';
+import copy from "copy-to-clipboard";
 
 const Posts = props => {
     return (
         <div className={classes.Posts}>
             {
-                props.items.map(item => (
+                props.items.length > 0 ? props.items.map(item => (
                     <Post
                         key={JSON.stringify(item)}
                         postId={item.postId}
                         publisherId={item.publisherId}
                         title={item.title}
-                        photo={item.photo}
+                        photo={backendBaseUrl + item.photo}
                         publisherName={item.publisherName}
-                        publisherProfPic={item.publisherProfPic}
+                        publisherProfPic={backendBaseUrl + item.publisherProfPic}
                         onPublisherClick={() => {
                             // TODO goto user profile page
+
                         }}
                         moreOptions={[
                             {
-                                title: "Copy link", onSelect: (postId) => {
-                                    alert("Copy link")
+                                title: "Copy image address", onSelect: (postId) => {
+                                    copy(backendBaseUrl + item.photo)
                                     // copy post url
                                 }
                             },
                             {
                                 title: "Save Posts", onSelect: (postId) => {
-                                    alert("Save Posts")
+                                    axios.post('/savePost', {username: store.get('username'), postId: postId}).then((response) => {
+
+                                    }).catch((err) => {
+                                        console.log(err)
+                                    });
                                     // download post image
                                 }
                             },
                         ]}
                     />
-                ))
+                )) : (
+                    <div className={classes.noPosts}>No Posts yet.</div>
+                )
             }
         </div>
     );

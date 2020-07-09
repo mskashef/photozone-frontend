@@ -11,3 +11,12 @@
   overflow-y: auto;
   padding-bottom: 40px;
 }
+.noPosts {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 85px);
+  position: absolute;
+  @include noUserSelect;
+}

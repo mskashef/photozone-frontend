@@ -62,7 +62,7 @@ Post.propTypes = {
     title: PropTypes.string.isRequired,
     photo: PropTypes.string.isRequired,
     publisherName: PropTypes.string.isRequired,
-    publisherProfPic: PropTypes.string.isRequired,
+    publisherProfPic: PropTypes.string,
     onPublisherClick: PropTypes.func,
     moreOptions: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string,

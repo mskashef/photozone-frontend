@@ -19,7 +19,7 @@ const PostPage = props => {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
         if (props.componentDidMount) props.componentDidMount();
-        axios.post("/getPost", {a: 5}).then(res => {
+        axios.post("/getPost", {a: 5}, {withCredentials: true}).then(res => {
             const data = res.data;
             setPostId(data.postId);
             setPostTitle(data.title);

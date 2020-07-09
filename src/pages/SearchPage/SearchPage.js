@@ -42,11 +42,11 @@ const SearchPage = props => {
         }
         console.log(activeTab);
         if (activeTab === "Posts") {
-            axios.post("/searchInPosts").then(res => {
+            axios.post("/searchInPosts", {}, {withCredentials: true}).then(res => {
                 setPosts(res.data);
             });
         } else {
-            axios.post("/searchInUsers").then(res => {
+            axios.post("/searchInUsers", {}, {withCredentials: true}).then(res => {
                 setUsers(res.data);
             });
         }
