@@ -8,24 +8,24 @@ import Page from "../../containers/Page/Page";
 import axios from "axios";
 import store from "store";
 import saved from "../../assets/saved.svg";
-import {withRouter} from 'react-router-dom';
+import {BrowserRouter, withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import ScrollMemory from "react-router-scroll-memory";
 
-import {
-    RecoilRoot,
-    atom,
-    selector,
-    useRecoilState,
-    useRecoilValue,
-} from 'recoil';
-
+document.onscroll = (e) => {
+    console.log(e);
+};
 const HomePage = props => {
-    const [posts, setPosts] = useState([]);
+    // const [posts, setPosts] = useState([]);
     useEffect(() => {
         if (props.componentDidMount) props.componentDidMount();
-        axios.post("/getPosts", {username: store.get('username')}, {withCredentials: true}).then(res => {
-            console.log(res);
-            setPosts(res.data);
-        }).catch(() => {});
+        if (!props.posts || props.posts.length === 0) {
+            axios.post("/getPosts", {username: store.get('username')}, {withCredentials: true}).then(res => {
+                console.log(res);
+                // setPosts(res.data);
+                props.setHomePagePosts(res.data);
+            }).catch(() => {});
+        }
     }, []);
     return (
         <Page>
@@ -35,14 +35,25 @@ const HomePage = props => {
                     <img alt="" style={{cursor: 'pointer'}} src={saved}/>
                 </div>
             </TitleBar>
-            <PageBody>
-                <Posts items={posts}/>
+            <PageBody uid={"HomePage"}>
+                <Posts items={props.posts ? props.posts : []}/>
             </PageBody>
         </Page>
     );
 };
 
-export default withRouter(HomePage);
+const mapStateToProps = state => {
+    return {
+        posts: state.homePagePosts
+    };
+};
+const mapDispatchToProps = dispatch => {
+    return {
+        setHomePagePosts: (val) => dispatch({type: "setHomePagePosts", value: val})
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(HomePage));
 
 HomePage.propTypes = {
     componentDidMount: PropTypes.func

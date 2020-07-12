@@ -12,42 +12,49 @@ import Thumbnail from "../../components/Thumbnail/Thumbnail";
 import EmptyThumbnail from "../../components/EmptyThumbnail/EmptyThumbnail";
 import store from 'store';
 import axios from 'axios';
-
-
+import {backendBaseUrl} from '../../constants/js/constants';
 
 let emptyThumbnails = [];
 for (let i = 0; i < 100; i++) {
     emptyThumbnails.push(i);
 }
 
-
 const SearchPage = props => {
-    // const [posts, setPosts] = useState([]);
     useEffect(() => {
         if (props.componentDidMount) props.componentDidMount();
         const activeTab = store.get('activeSelectionTab');
         setActiveTab(activeTab ? activeTab : 'Posts')
     }, []);
 
-    const [val, setVal] = useState("");
+    const extractHashtags = str => {
+        return str.split(' ').filter(
+            (value, index, self) => value.trim().length > 0 && self.indexOf(value) === index
+        );
+    };
+
+    const [searchText, setSearchText] = useState("");
     const [activeTab, setActiveTab] = useState("Posts");
     const [users, setUsers] = useState([]);
     const [posts, setPosts] = useState([]);
 
-    const searchHandler = text => {
-        if (text.trim().length === 0) {
+    const searchHandler = (text, tab = activeTab) => {
+        if (!text || text.trim().length === 0) {
             setUsers([]);
             setPosts([]);
             return;
         }
-        console.log(activeTab);
-        if (activeTab === "Posts") {
-            axios.post("/searchInPosts", {}, {withCredentials: true}).then(res => {
-                setPosts(res.data);
-            });
+        if (tab === "Posts") {
+            const tags = extractHashtags(text);
+            if (tags) {
+                axios.post("/searchInPosts", {tags: extractHashtags(text)}, {withCredentials: true}).then(res => {
+                    setPosts(res.data.map ? res.data : []);
+                }).catch(err => {
+                });
+            }
         } else {
-            axios.post("/searchInUsers", {}, {withCredentials: true}).then(res => {
+            axios.post("/searchInUsers", {searchText: text}, {withCredentials: true}).then(res => {
                 setUsers(res.data);
+            }).catch(err => {
             });
         }
     };
@@ -56,9 +63,9 @@ const SearchPage = props => {
         <Page>
             <SearchBox
                 style={{margin: 5, width: 'calc(100% - 10px)'}}
-                value={val}
+                value={searchText}
                 onChangeText={(val) => {
-                    setVal(val);
+                    setSearchText(val);
                     searchHandler(val);
                 }}
                 placeholder={"Search..."}
@@ -69,27 +76,29 @@ const SearchPage = props => {
                 onTabChange={tab => {
                     setActiveTab(tab);
                     store.set('activeSelectionTab', tab);
-                    searchHandler(val);
+                    searchHandler(searchText, tab);
                 }}
             />
-            <PageBody>
+            <PageBody uid="SearchPage">
                 {
                     activeTab === "Posts" ? (
                         <div className={classes.postsContainer}>
                             {
-                                posts.map(post => (
+                                posts ? posts.map(post => (
                                     <Thumbnail
                                         key={JSON.stringify(post)}
-                                        src={post.photo}
+                                        src={backendBaseUrl + post.photo}
                                         hoverTitle={post.title}
                                         onClick={() => {
-                                            props.history.push(post.path);
+                                            props.history.push("/posts/" + post.postId);
                                         }}
                                     />
-                                ))
+                                )) : (
+                                    <div className={classes.noPosts}>No Posts yet.</div>
+                                )
                             }
                             {
-                                ["1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",].map(post => (
+                                posts && ["1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",].map(post => (
                                     <EmptyThumbnail key={Math.random() + ":" + Math.random()}/>
                                 ))
                             }
@@ -98,22 +107,21 @@ const SearchPage = props => {
                         <div className={classes.usersContainer}>
                             {
                                 users.map(user => (
-                                    <fragment>
-                                        <TitledPic
-                                            key={user.username}
-                                            title={user.name}
-                                            caption={user.username}
-                                            img={user.profpic}
-                                            userId={user.username}
-                                            onClick={() => {props.history.push("/users/" + user.username)}}
-                                        />
-                                    </fragment>
+                                    <TitledPic
+                                        key={user.username}
+                                        title={user.name}
+                                        caption={user.username}
+                                        img={backendBaseUrl + user.profpic}
+                                        userId={user.username}
+                                        onClick={() => {
+                                            props.history.push("/users/" + user.username)
+                                        }}
+                                    />
                                 ))
                             }
                         </div>
                     )
                 }
-
             </PageBody>
         </Page>
     );
@@ -124,4 +132,3 @@ export default withRouter(SearchPage);
 SearchPage.propTypes = {
     componentDidMount: PropTypes.func
 };
-SearchPage.defaultProps = {};

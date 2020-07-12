@@ -17,7 +17,7 @@ const Post = props => {
         setAnchorEl(null);
     };
     return (
-        <div className={classes.Post}>
+        <div className={classes.Post} onClick={props.onClick}>
             <div className={classes.photo} style={{backgroundImage: `url(${props.photo})`}} />
             <div className={classes.details}>
                 <div className={classes.userContainer}>
@@ -26,7 +26,7 @@ const Post = props => {
                         title={props.title}
                         caption={props.publisherName}
                         img={props.publisherProfPic}
-                        onClick={props.onPublisherClick}
+                        onClick={(e) => {}}
                     />
                 </div>
                 <img className={classes.moreButton} src={moreButton} onClick={handleClick}/>
@@ -63,7 +63,7 @@ Post.propTypes = {
     photo: PropTypes.string.isRequired,
     publisherName: PropTypes.string.isRequired,
     publisherProfPic: PropTypes.string,
-    onPublisherClick: PropTypes.func,
+    onClick: PropTypes.func,
     moreOptions: PropTypes.arrayOf(PropTypes.shape({
         title: PropTypes.string,
         onSelect: PropTypes.func

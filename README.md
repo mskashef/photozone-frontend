@@ -121,8 +121,7 @@ NewPostPage Card Component
 
 | method  | arguments                      | description   |
 |---------|----------------------------------|---------------|
-| onPublisherClick | a string: username of the publisher | Executed when user clicks on the post publisher|
-
+| onClick | a string: id of the post in database | Executed when user clicks on the post|
 
 
 ## HomeSvgIcon
@@ -180,6 +179,7 @@ It's just a container for body content.
 | prop    | value  | description   |
 |---------|--------|---------------|
 | children | anything | Here we can insert anything that can be rendered as a react element |
+| uid | string | a unique ID for a page body; it's used to save the scroll position of the page and restore it when user returns to it|
 
 ## Page
 It's just a container for content of a page (it's a full screen empty page).

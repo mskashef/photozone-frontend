@@ -14,6 +14,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import NewPostPage from "./pages/NewPostPage/NewPostPage";
 import AuthPage from "./pages/AuthPage/AuthPage";
 import axios from "axios";
+import {connect} from 'react-redux';
 
 function App(props) {
 
@@ -23,13 +24,18 @@ function App(props) {
         if (res.data.redirect) {
             props.history.replace(res.data.redirect);
         }
+        if (res.data.msg) {
+           alert(res.data.msg);
+        }
         return res;
     }, err => {
-        if (err.response.data.redirect) {
-            props.history.replace(err.response.data.redirect);
-        }
-        if (err.response.data.msg) {
-            alert(err.response.data.msg);
+        if (err.response) {
+            if (err.response.data.redirect) {
+                props.history.replace(err.response.data.redirect);
+            }
+            if (err.response.data.msg) {
+                alert(err.response.data.msg);
+            }
         }
         return err;
     });
@@ -67,16 +73,16 @@ function App(props) {
     return (
         <div className={classes.App}>
             <Switch>
-                <Route path={'/'} exact render={() => {
+                <Route key={"HomePageRoute"} path={'/'} exact render={() => {
                     return (
-                        <HomePage componentDidMount={() => {
+                        <HomePage key={"HomePage"} componentDidMount={() => {
                             handlePageChange("HomeSvgIcon")
                         }}/>
                     )
                 }}/>
-                <Route path={'/posts/:id'} exact render={() => {
+                <Route path={'/posts/:id'} exact render={(props) => {
                     return (
-                        <PostPage componentDidMount={() => {
+                        <PostPage {...props} componentDidMount={() => {
                         }}/>
                     )
                 }}/>
@@ -108,9 +114,9 @@ function App(props) {
                         }}/>
                     )
                 }}/>
-                <Route path={'/users/:id'} exact render={() => {
+                <Route path={'/users/:id'} exact render={(props) => {
                     return (
-                        <ProfilePage componentDidMount={() => {
+                        <ProfilePage {...props} componentDidMount={() => {
                         }}/>
                     )
                 }}/>
@@ -132,4 +138,16 @@ function App(props) {
     );
 }
 
-export default withRouter(App);
+
+const mapStateToProps = state => {
+    return {
+        ctr: state.counter
+    };
+};
+const mapDispatchToProps = dispatch => {
+    return {
+        onIncrementCount: () => dispatch({type: "INCREMENT"})
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));

@@ -28,7 +28,7 @@ const ChatsPage = props => {
                     <img alt="" style={{cursor: 'pointer'}} src={saved}/>
                 </div>
             </TitleBar>
-            <PageBody>
+            <PageBody uid="ChatsPage">
                 <div className={classes.usersContainer}>
                     {
                         users.map(user => (

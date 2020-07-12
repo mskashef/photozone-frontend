@@ -9,6 +9,8 @@ import logo from "../../assets/AuthPage/logo.svg";
 import AuthTextField from "../../components/AuthTextField/AuthTextField";
 import AuthButton from "../../components/AuthButton/AuthButton";
 import axios from 'axios';
+import {connect} from 'react-redux';
+
 import store from 'store';
 
 const states = {
@@ -57,7 +59,7 @@ const AuthPage = props => {
 
     return (
         <Page>
-            <PageBody style={{backgroundImage: `url(${bg})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+            <PageBody uid="AuthPage" style={{backgroundImage: `url(${bg})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
                 <div className={classes.pageBodyInsideWrapper}>
                     <img className={classes.logo} src={logo} alt="" onClick={() => {
                         axios.post('/session', {}).then(response => {
@@ -144,7 +146,15 @@ const AuthPage = props => {
     );
 };
 
-export default withRouter(AuthPage);
+const mapStateToProps = state => ({});
+const mapDispatchToProps = dispatch => {
+    return {
+        setUsername: (val) => dispatch({type: "setUsername", value: val})
+    };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AuthPage));
 
 AuthPage.propTypes = {
     componentDidMount: PropTypes.func

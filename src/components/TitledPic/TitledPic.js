@@ -3,12 +3,14 @@ import * as PropTypes from 'prop-types';
 import classes from './TitledPic.module.scss';
 
 const TitledPic = props => {
+    const titleWrapperClassName = props.title ? classes.title : [classes.title, classes.gray].join(' ');
+    const captionWrapperClassName = props.title ? classes.caption : [classes.caption, classes.gray].join(' ');
     return (
-        <div className={classes.TitledPic} onClick={() => {props.onClick(props.userId)}} style={props.onClick ? {cursor: 'pointer'} : {}}>
+        <div className={classes.TitledPic} onClick={(e) => {props.onClick(e, props.userId)}} style={props.onClick ? {cursor: 'pointer'} : {}}>
             <div className={classes.img} style={{backgroundImage: `url(${props.img})`, ...props.imageStyle}} />
             <div className={classes.TitleContainer}>
-                <div className={classes.title} style={props.titleStyle ? props.titleStyle : {}}>{props.title}</div>
-                <div className={classes.caption}>{props.caption}</div>
+                <div className={titleWrapperClassName} style={props.titleStyle ? props.titleStyle : {}}>{props.title}</div>
+                <div className={captionWrapperClassName}>{props.caption}</div>
             </div>
         </div>
     );
