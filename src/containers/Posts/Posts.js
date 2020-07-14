@@ -27,17 +27,14 @@ const Posts = props => {
                     {
                         title: "Copy image address", onSelect: (postId) => {
                             copy(backendBaseUrl + item.photo)
-                            // copy post url
                         }
                     },
                     {
                         title: "Save Posts", onSelect: (postId) => {
-                            axios.post('/savePost', {username: store.get('username'), postId: postId}).then((response) => {
-
+                            axios.post('/savePost', {postId: postId}).then((response) => {
                             }).catch((err) => {
                                 console.log(err)
                             });
-                            // download post image
                         }
                     },
                 ]}

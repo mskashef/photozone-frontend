@@ -61,12 +61,13 @@ const PostPage = props => {
     };
 
     const backButtonHandler = () => props.history.goBack();
+    const savedPostsButtonHandler = () => props.history.push('/savedPosts');
 
     return (
         <Page>
             <TitleBar>
                 <b>Post</b>
-                <div style={{width: 30, height: 30, position: 'absolute', right: 5, cursor: 'pointer'}}>
+                <div style={{width: 30, height: 30, position: 'absolute', right: 5, cursor: 'pointer'}} onClick={savedPostsButtonHandler}>
                     <img alt="" style={{cursor: 'pointer'}} src={saved}/>
                 </div>
                 <div style={{width: 30, height: 30, position: 'absolute', left: 5, cursor: 'pointer'}}>
@@ -125,7 +126,7 @@ const PostPage = props => {
                     <div className={classes.rightSide}>
                         <h1>{postTitle}</h1>
                         <div className={classes.caption}>
-                            {caption.split("&lt%end_Of_Line%&gt").map(line => <div>{line}</div>)}
+                            {caption.split("&lt%end_Of_Line%&gt").map(line => <div key={line + Math.random()}>{line}</div>)}
                         </div>
                         <Tags items={tags}/>
                         <br/>

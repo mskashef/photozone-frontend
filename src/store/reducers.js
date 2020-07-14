@@ -1,7 +1,8 @@
 import store from 'store';
 const initialState = {
     homePagePosts: [],
-    username: store.get('username')
+    username: store.get('username'),
+    openedChat: undefined
 };
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -14,6 +15,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 username: action.value
+            };
+        case 'setOpenedChat':
+            return {
+                ...state,
+                openedChat: action.value
             };
         default:
             return state;

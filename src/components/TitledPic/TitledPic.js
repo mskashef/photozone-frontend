@@ -10,8 +10,15 @@ const TitledPic = props => {
             <div className={classes.img} style={{backgroundImage: `url(${props.img})`, ...props.imageStyle}} />
             <div className={classes.TitleContainer}>
                 <div className={titleWrapperClassName} style={props.titleStyle ? props.titleStyle : {}}>{props.title}</div>
-                <div className={captionWrapperClassName}>{props.caption}</div>
+                <div className={captionWrapperClassName} style={props.captionStyle}>{props.caption}</div>
             </div>
+            {
+                props.showBadge && (
+                    <div className={classes.badgeWrapper}>
+                        <div className={classes.badge} />
+                    </div>
+                )
+            }
         </div>
     );
 };
@@ -25,7 +32,8 @@ TitledPic.propTypes = {
     onClick: PropTypes.func,
     userId: PropTypes.string,
     imageStyle: PropTypes.object,
-    titleStyle: PropTypes.object
+    titleStyle: PropTypes.object,
+    captionStyle: PropTypes.object,
 };
 TitledPic.defaultProps = {
     imageStyle: {}

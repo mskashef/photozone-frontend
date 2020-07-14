@@ -1,11 +1,10 @@
-import React, {useState, Fragment, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import classes from './App.module.css';
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import HomePage from "./pages/HomePage/HomePage";
 import {withRouter} from "react-router-dom";
-import Tags from "./containers/Tags/Tags";
 import PostPage from "./pages/PostPage/PostPage";
 import SearchPage from "./pages/SearchPage/SearchPage";
 import ChatsPage from "./pages/ChatsPage/ChatsPage";
@@ -15,27 +14,21 @@ import NewPostPage from "./pages/NewPostPage/NewPostPage";
 import AuthPage from "./pages/AuthPage/AuthPage";
 import axios from "axios";
 import {connect} from 'react-redux';
+import SavedPostsPage from "./pages/SavedPostsPage/SavedPostsPage";
+import ChatPage from "./pages/ChatPage/ChatPage";
 
 function App(props) {
 
     const [activeTab, setActiveTab] = useState("HomeSvgIcon");
 
     axios.interceptors.response.use(res => {
-        if (res.data.redirect) {
-            props.history.replace(res.data.redirect);
-        }
-        if (res.data.msg) {
-           alert(res.data.msg);
-        }
+        if (res.data && res.data.redirect) props.history.replace(res.data.redirect);
+        if (res.data && res.data.msg) alert(res.data.msg);
         return res;
     }, err => {
         if (err.response) {
-            if (err.response.data.redirect) {
-                props.history.replace(err.response.data.redirect);
-            }
-            if (err.response.data.msg) {
-                alert(err.response.data.msg);
-            }
+            if (err.response.data.redirect) props.history.replace(err.response.data.redirect);
+            if (err.response.data.msg) alert(err.response.data.msg);
         }
         return err;
     });
@@ -80,6 +73,12 @@ function App(props) {
                         }}/>
                     )
                 }}/>
+                <Route key={"ChatPageRoute"} path={'/chats/:id'} exact render={(props) => {
+                    return (
+                        <ChatPage {...props} key={"ChatPage"} componentDidMount={() => {
+                        }}/>
+                    )
+                }}/>
                 <Route path={'/posts/:id'} exact render={(props) => {
                     return (
                         <PostPage {...props} componentDidMount={() => {
@@ -114,6 +113,12 @@ function App(props) {
                         }}/>
                     )
                 }}/>
+                <Route path={'/savedPosts'} exact render={() => {
+                    return (
+                        <SavedPostsPage componentDidMount={() => {
+                        }}/>
+                    )
+                }}/>
                 <Route path={'/users/:id'} exact render={(props) => {
                     return (
                         <ProfilePage {...props} componentDidMount={() => {
@@ -127,13 +132,11 @@ function App(props) {
                     )
                 }}/>
             </Switch>
-            {/*['/', '/search', '/chats', '/profile', '/newPost', '/savedPosts']*/}
-            <Route path={['/', '/search', '/chats', '/profile', '/newPost', '/savedPosts']} exact render={() => {
+            <Route path={['/', '/search', '/chats', '/profile', '/newPost']} exact render={() => {
                 return (
                     <NavBar activeTab={activeTab} onChangeTab={handlePageChange}/>
                 )
             }}/>
-
         </div>
     );
 }

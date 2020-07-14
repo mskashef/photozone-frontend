@@ -33,3 +33,10 @@
   -ms-user-select: none;
   user-select: none;
 }
+@mixin transform ($val) {
+  -webkit-transform: $val;
+  -moz-transform: $val;
+  -ms-transform: $val;
+  -o-transform: $val;
+  transform: $val;
+}

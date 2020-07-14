@@ -1,10 +1,9 @@
-import React, {useEffect, useState, Fragment} from 'react';
+import React, {useState} from 'react';
 import * as PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
 import classes from './NewPostPage.module.scss';
 import PageBody from "../../containers/PageBody/PageBody";
 import Page from "../../containers/Page/Page";
-import TitledPic from "../../components/TitledPic/TitledPic";
 import axios from 'axios';
 import store from 'store';
 import saved from "../../assets/saved.svg";
@@ -14,14 +13,13 @@ import Tags from "../../containers/Tags/Tags";
 import OrangeButton from "../../components/OrangeButton/OrangeButton";
 import ImageUpload from "../../components/ImageUpload/ImageUpload";
 
-
 const NewPostPage = props => {
 
     const extractHashtags = str => {
         let tags = str.split(' ').filter(
             (value, index, self) => value.trim().length > 0 && self.indexOf(value) === index
         );
-        setTags(tags)
+        setTags(tags);
     };
 
     const publishPostHandler = () => {
@@ -38,11 +36,8 @@ const NewPostPage = props => {
                 'Content-Type': 'multipart/form-data'
             }
         }).then(res => {
-            // this.setState({isLoading: false});
             props.history.replace('/');
         }).catch(err => {
-            // this.setState({isLoading: false});
-            // Toast("مشکلی در ارتباط با سرور به وجود آمد.","error");
         });
     };
 
@@ -51,7 +46,6 @@ const NewPostPage = props => {
     const [title, setTitle] = useState("");
     const [caption, setCaption] = useState("");
     const [photo, setPhoto] = useState(null);
-
 
     return (
         <Page>

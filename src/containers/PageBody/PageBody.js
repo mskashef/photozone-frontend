@@ -3,6 +3,7 @@ import * as PropTypes from 'prop-types';
 import classes from './PageBody.module.scss';
 import store from 'store';
 
+
 const PageBody = props => {
     const scrollTopPointer = React.useRef(null);
     const id = props.uid + "_scrollTopPosition";
@@ -17,7 +18,7 @@ const PageBody = props => {
     return (
         <div
             className={classes.PageBody}
-            style={props.style}
+            style={props.reverse ? {...props.style/*, transform: 'scaleY(-1)'*/} : props.style}
             ref={scrollTopPointer}
             onScroll={() => {
                 if (props.uid) store.set(id, scrollTopPointer.current.scrollTop)
@@ -32,6 +33,7 @@ export default PageBody;
 PageBody.propTypes = {
     children: PropTypes.any,
     style: PropTypes.object,
+    uid: PropTypes.string
 };
 PageBody.defaultProps = {
     children: null,

@@ -10,6 +10,7 @@ const Post = props => {
     const open = Boolean(anchorEl);
 
     const handleClick = (event) => {
+        event.stopPropagation();
         setAnchorEl(event.currentTarget);
     };
 
@@ -17,8 +18,8 @@ const Post = props => {
         setAnchorEl(null);
     };
     return (
-        <div className={classes.Post} onClick={props.onClick}>
-            <div className={classes.photo} style={{backgroundImage: `url(${props.photo})`}} />
+        <div className={classes.Post}>
+            <div className={classes.photo} onClick={props.onClick} style={{backgroundImage: `url(${props.photo})`}} />
             <div className={classes.details}>
                 <div className={classes.userContainer}>
                     <TitledPic
@@ -30,7 +31,6 @@ const Post = props => {
                     />
                 </div>
                 <img className={classes.moreButton} src={moreButton} onClick={handleClick}/>
-
                 <Menu
                     id="long-menu"
                     anchorEl={anchorEl}

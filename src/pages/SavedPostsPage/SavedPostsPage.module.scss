@@ -58,8 +58,12 @@
 .usersContainer > * {
   margin: 10px 0 0 10px;
 }
-.line {
-  background-color: #E3E3E3;
-  height: 1px;
-  width: calc(100% - 20px);
+
+.about {
+  color: #777777;
+  margin: 20px 0;
+  padding: 0 10px;
+}
+.buttons {
+  @include row;
 }

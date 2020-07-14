@@ -40,3 +40,15 @@
   background-color: #F5F5F5;
   @include borderRadius(5px);
 }
+.badgeWrapper {
+  flex: 1;
+  @include row;
+  align-items: center;
+  justify-content: flex-end;
+}
+.badge {
+  background-color: #0F0;
+  @include square(15px);
+  @include borderRadius(100%);
+  margin-right: 10px;
+}

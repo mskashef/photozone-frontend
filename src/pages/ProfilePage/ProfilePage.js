@@ -18,12 +18,10 @@ import {Menu, MenuItem} from "@material-ui/core";
 import {connect} from 'react-redux';
 import {backendBaseUrl} from '../../constants/js/constants';
 
-
 const ProfilePage = props => {
     useEffect(() => {
         if (props.componentDidMount) props.componentDidMount();
         axios.post('/getUserInfo', {myUsername: store.get('username'), username: props.isMe ? store.get('username') : props.match.params.id}, {withCredentials: true}).then(res => {
-            // setPosts(res.data)
             const data = res.data;
             setUsername(data.username);
             setName(data.name);
@@ -44,6 +42,8 @@ const ProfilePage = props => {
     const [photo, setPhoto] = useState('');
     const [bio, setBio] = useState('');
     const [amIFollowing, setAmIFollowing] = useState(false);
+    let me = store.get('username');
+    let isMe = (props.isMe || props.match.params.id === me);
 
     const [followersCount, setFollowersCount] = useState(1);
     const [followingsCount, setFollowingsCount] = useState(1);
@@ -63,7 +63,7 @@ const ProfilePage = props => {
     };
 
     const handleMessage = () => {
-        props.history.push('/chats/sdfs')
+        props.history.push('/chats/' + props.match.params.id);
     };
 
     const handleFollowOrUnfollow = () => {
@@ -73,10 +73,11 @@ const ProfilePage = props => {
         }).catch(err => {});
     };
 
+
     return (
         <Page>
             <TitleBar noShadow>
-                {props.isMe && <b>My Profile</b>}
+                {isMe && <b>My Profile</b>}
                 <div style={{
                     width: 30,
                     height: 30,
@@ -86,7 +87,7 @@ const ProfilePage = props => {
                     cursor: 'pointer',
                     textAlign: 'center'
                 }}>
-                    <img className={classes.moreButton} src={moreButton} onClick={handleClick} style={{height: 18, paddingLeft: 20}}/>
+                    <img alt="" className={classes.moreButton} src={moreButton} onClick={handleClick} style={{height: 18, paddingLeft: 20}}/>
                     <Menu
                         id="long-menu"
                         anchorEl={anchorEl}
@@ -95,7 +96,7 @@ const ProfilePage = props => {
                         onClose={handleClose}
                     >
                         {
-                            props.isMe ? (
+                            isMe ? (
                                 <div>
                                     <MenuItem
                                         onClick={() => {
@@ -147,7 +148,7 @@ const ProfilePage = props => {
                             )
                         }
                     </Menu>
-                    {/*<img alt="" style={{cursor: 'pointer'}} src={saved}/>*/}
+
                 </div>
                 {
                     props.isMe || (
@@ -169,7 +170,7 @@ const ProfilePage = props => {
                 />
                 <div className={classes.about}>{bio}</div>
                 {
-                    props.isMe || (
+                    isMe || (
                         <>
                             <div className={classes.buttons}>
                                 <OrangeButton

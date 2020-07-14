@@ -1,4 +1,4 @@
-import React, {useEffect, useState, Fragment} from 'react';
+import React, {useState} from 'react';
 import * as PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
 import classes from './AuthPage.module.scss';
@@ -10,7 +10,6 @@ import AuthTextField from "../../components/AuthTextField/AuthTextField";
 import AuthButton from "../../components/AuthButton/AuthButton";
 import axios from 'axios';
 import {connect} from 'react-redux';
-
 import store from 'store';
 
 const states = {
@@ -18,6 +17,7 @@ const states = {
     signIn: 1,
     signUp: 2
 };
+
 const AuthPage = props => {
 
     const [name, setName] = useState("");
@@ -61,11 +61,7 @@ const AuthPage = props => {
         <Page>
             <PageBody uid="AuthPage" style={{backgroundImage: `url(${bg})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
                 <div className={classes.pageBodyInsideWrapper}>
-                    <img className={classes.logo} src={logo} alt="" onClick={() => {
-                        axios.post('/session', {}).then(response => {
-
-                        });
-                    }}/>
+                    <img className={classes.logo} src={logo} alt="" />
                     {
                         state === states.signUp && (
                             <AuthTextField
@@ -77,7 +73,7 @@ const AuthPage = props => {
                     }
                     {
                         (state === states.signUp || state === states.signIn) && (
-                            <Fragment>
+                            <>
                                 <AuthTextField
                                     label={"Username"}
                                     value={username}
@@ -88,8 +84,7 @@ const AuthPage = props => {
                                     value={password}
                                     onChange={e => setPassword(e.target.value)}
                                 />
-
-                            </Fragment>
+                            </>
                         )
                     }
                     {
@@ -103,10 +98,10 @@ const AuthPage = props => {
                     }
                     {
                         state === states.auth && (
-                            <Fragment>
+                            <>
                                 <div className={classes.PhotoZone}>PhotoZone</div>
                                 <div className={classes.caption}>Share your photos easily...</div>
-                            </Fragment>
+                            </>
                         )
                     }
                     {
@@ -146,13 +141,10 @@ const AuthPage = props => {
     );
 };
 
-const mapStateToProps = state => ({});
-const mapDispatchToProps = dispatch => {
-    return {
-        setUsername: (val) => dispatch({type: "setUsername", value: val})
-    };
-};
-
+const mapStateToProps = () => ({});
+const mapDispatchToProps = dispatch => ({
+    setUsername: (val) => dispatch({type: "setUsername", value: val})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AuthPage));
 

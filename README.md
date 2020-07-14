@@ -23,8 +23,9 @@ Used in many other container components.
 | title   | string | Title         |
 | caption | string | Caption       |
 | userId | string | the user's username in the database       |
-| imageStyle | style object | for applying css props to image    |
-| titleStyle | style object | for applying css props to title    |
+| imageStyle | style object | for applying css props to the image    |
+| titleStyle | style object | for applying css props to the title    |
+| captionStyle | style object | for applying css props to the caption    |
 
 - methods
 
@@ -102,7 +103,7 @@ Just a Title bar with an empty body which the programmer can fill it with some e
 
 
 
-## NewPostPage
+## Posts
 NewPostPage Card Component
 
 - props
@@ -123,6 +124,28 @@ NewPostPage Card Component
 |---------|----------------------------------|---------------|
 | onClick | a string: id of the post in database | Executed when user clicks on the post|
 
+
+
+items: PropTypes.shape({
+        hasNewMessage: PropTypes.bool,
+        contactName: PropTypes.string,
+        contactUsername: PropTypes.string,
+        profPic: PropTypes.string
+    })
+
+## Messages
+A Container Component for chats (used in `ChatsPage`)
+- props
+
+| prop    | value  | description   |
+|---------|--------|---------------|
+| items | array of object of shape ({ hasNewMessage: PropTypes.bool, contactName: PropTypes.string, contactUsername: PropTypes.string, profPic: PropTypes.string}) | chats to be displayed in the screen |
+
+- methods
+
+| method | arguments | description |
+|--------|-----------|-------------|
+| onChatOpen | chat Object | Executed when user opens a chat |
 
 ## HomeSvgIcon
 It's just a home icon used in the NavBar. I put it inside of a component cause:
@@ -189,7 +212,7 @@ It's just a container for content of a page (it's a full screen empty page).
 |---------|--------|---------------|
 | children | anything | Here we can insert anything that can be rendered as a react element |
 
-## HomePage
+## ChatPage
 The Home Page component displayed in `/` path.
 
 ## NewPostPage

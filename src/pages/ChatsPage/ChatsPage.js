@@ -1,56 +1,48 @@
-import React, {useEffect, useState, Fragment} from 'react';
+import React, {useEffect, useState} from 'react';
 import * as PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
-import classes from './ChatsPage.module.scss';
 import PageBody from "../../containers/PageBody/PageBody";
 import Page from "../../containers/Page/Page";
-import TitledPic from "../../components/TitledPic/TitledPic";
 import axios from 'axios';
 import saved from "../../assets/saved.svg";
 import TitleBar from "../../components/TitleBar/TitleBar";
+import Chats from "../../containers/Chats/Chats";
+import {connect} from 'react-redux';
 
 
 const ChatsPage = props => {
     useEffect(() => {
         if (props.componentDidMount) props.componentDidMount();
-        axios.post('/SearchInUsers',{}, {withCredentials: true}).then(res => {
-            setUsers(res.data);
+        axios.post('/getChats',{}, {withCredentials: true}).then(res => {
+            console.log(res.data)
+            setChats(res.data);
         });
     }, []);
 
-    const [users, setUsers] = useState([]);
+    const savedClickHandler = () => props.history.push('/savedPosts');
+
+    const [chats, setChats] = useState([]);
 
     return (
         <Page>
             <TitleBar>
                 <b>Chats</b>
                 <div style={{width: 30, height: 30, position: 'absolute', right: 5, cursor: 'pointer'}}>
-                    <img alt="" style={{cursor: 'pointer'}} src={saved}/>
+                    <img alt="" style={{cursor: 'pointer'}} src={saved} onClick={() => {savedClickHandler()}}/>
                 </div>
             </TitleBar>
             <PageBody uid="ChatsPage">
-                <div className={classes.usersContainer}>
-                    {
-                        users.map(user => (
-                            <Fragment key={Math.random()}>
-                                <TitledPic
-                                    title={user.name}
-                                    caption={user.username}
-                                    img={user.profpic}
-                                    userId={user.username} onClick={() => {
-                                    props.history.push("/chats/" + user.username)
-                                }}/>
-                                <div className={classes.line} />
-                            </Fragment>
-                        ))
-                    }
-                </div>
+                <Chats onChatSelect={chat => props.setOpenedChat(chat)} items={chats}/>
             </PageBody>
         </Page>
     );
 };
+const mapStateToProps = state => ({});
+const mapDispatchToProps = dispatch => ({
+    setOpenedChat: (val) => dispatch({type: "setOpenedChat", value: val})
+});
 
-export default withRouter(ChatsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ChatsPage));
 
 ChatsPage.propTypes = {
     componentDidMount: PropTypes.func
