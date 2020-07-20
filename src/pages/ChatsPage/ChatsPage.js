@@ -16,7 +16,7 @@ const ChatsPage = props => {
         axios.post('/getChats',{}, {withCredentials: true}).then(res => {
             console.log(res.data)
             setChats(res.data);
-        });
+        }).catch(err => {});
     }, []);
 
     const savedClickHandler = () => props.history.push('/savedPosts');

@@ -15,7 +15,7 @@ const Chats = props => {
     return (
         <div className={classes.usersContainer}>
             {
-                props.items.length > 0 ? props.items.map(chat => (
+                props.items && props.items.length > 0 ? props.items.map(chat => (
                     <Fragment key={Math.random()}>
                         <TitledPic
                             showBadge={chat.hasNewMessage}

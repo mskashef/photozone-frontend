@@ -63,7 +63,7 @@ const ChatPage = props => {
                     <img alt="" style={{cursor: 'pointer'}} src={back} onClick={backButtonHandler}/>
                 </div>
             </TitleBar>
-            <PageBody reverse>
+            <PageBody scrollDown>
                 <Messages items={messages} />
             </PageBody>
             <WriteMessage  value={message} onChangeText={text => setMessage(text)} onTextMessageSubmit={msg => sendMessageHandler(msg)}/>

@@ -13,12 +13,16 @@ const PageBody = props => {
             let scrollTop = store.get(id);
             if (scrollTop) scrollTopPointer.current.scrollTop = scrollTop;
             else scrollTopPointer.current.scrollTop = 0;
+        } else if (props.scrollDown) {
+            setTimeout(() => {
+                scrollTopPointer.current.scrollTop = scrollTopPointer.current.scrollHeight;
+            }, 100);
         }
     }, []);
     return (
         <div
             className={classes.PageBody}
-            style={props.reverse ? {...props.style/*, transform: 'scaleY(-1)'*/} : props.style}
+            style={props.style}
             ref={scrollTopPointer}
             onScroll={() => {
                 if (props.uid) store.set(id, scrollTopPointer.current.scrollTop)
@@ -33,7 +37,8 @@ export default PageBody;
 PageBody.propTypes = {
     children: PropTypes.any,
     style: PropTypes.object,
-    uid: PropTypes.string
+    uid: PropTypes.string,
+    scrollDown: PropTypes.bool,
 };
 PageBody.defaultProps = {
     children: null,

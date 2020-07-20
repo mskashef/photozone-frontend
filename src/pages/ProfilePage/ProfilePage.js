@@ -17,6 +17,7 @@ import moreButton from "../../assets/more.svg";
 import {Menu, MenuItem} from "@material-ui/core";
 import {connect} from 'react-redux';
 import {backendBaseUrl} from '../../constants/js/constants';
+import ImageUploader from "react-images-upload";
 
 const ProfilePage = props => {
     useEffect(() => {
@@ -48,6 +49,7 @@ const ProfilePage = props => {
     const [followersCount, setFollowersCount] = useState(1);
     const [followingsCount, setFollowingsCount] = useState(1);
     const [postsCount, setPostsCount] = useState(0);
+    const [showUpload, setShowUpload] = useState(false);
 
     const backButtonHandler = () => props.history.goBack();
 
@@ -71,6 +73,20 @@ const ProfilePage = props => {
             setFollowersCount(followersCount - (amIFollowing ? 1 : -1));
             setAmIFollowing(!amIFollowing);
         }).catch(err => {});
+    };
+
+    const onDrop = (pictureFiles, pictureDataURLs) => {
+        let data = new FormData();
+        data.append('photo', pictureFiles[0]);
+        axios.post('/updateProfilePicture', data, {
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then(res => {
+            window.location.reload();
+        }).catch(err => {
+        });
     };
 
 
@@ -148,7 +164,6 @@ const ProfilePage = props => {
                             )
                         }
                     </Menu>
-
                 </div>
                 {
                     props.isMe || (
@@ -164,10 +179,22 @@ const ProfilePage = props => {
                     caption={username}
                     imageStyle={{width: 100, height: 100, marginLeft: 10}}
                     titleStyle={{fontSize: 20}}
-                    onClick={() => {
-                    }}
+                    onClick={isMe ? () => {setShowUpload(!showUpload)} : () => {}}
                     img={backendBaseUrl + photo}
                 />
+                {
+                    isMe && showUpload && (
+                        <ImageUploader
+                            singleImage={true}
+                            withIcon={true}
+                            withLabel={false}
+                            buttonText="Choose image"
+                            onChange={onDrop}
+                            imgExtension={[".jpg", ".gif", ".png"]}
+                            maxFileSize={5242880 * 2}
+                        />
+                    )
+                }
                 <div className={classes.about}>{bio}</div>
                 {
                     isMe || (

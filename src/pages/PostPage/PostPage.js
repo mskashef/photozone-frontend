@@ -13,13 +13,11 @@ import TitledPic from "../../components/TitledPic/TitledPic";
 import moreButton from "../../assets/more.svg";
 import {Menu, MenuItem} from "@material-ui/core";
 import Tags from "../../containers/Tags/Tags";
-import SearchBox from "../../components/SearchBox/SearchBox";
 import {backendBaseUrl} from '../../constants/js/constants';
 import copy from "copy-to-clipboard";
 import store from "store";
 
 const PostPage = props => {
-    const [posts, setPosts] = useState([]);
     useEffect(() => {
         if (props.componentDidMount) props.componentDidMount();
         axios.post("/getPost", {postId: props.match.params.id}, {withCredentials: true}).then(res => {
@@ -78,7 +76,13 @@ const PostPage = props => {
                 <div className={classes.Post}>
                     {/*<div className={classes.photo} style={{backgroundImage: `url(${photo})`}} />*/}
                     <div className={classes.leftSide}>
-                        <img className={classes.photo} alt="" src={photo}/>
+                        {
+                            photo ? (
+                                <img className={classes.photo} alt="" src={photo}/>
+                            ) : (
+                                <div className={classes.loading} />
+                            )
+                        }
                         <div className={classes.details}>
                             <div className={classes.userContainer}>
                                 <TitledPic
