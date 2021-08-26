@@ -9,16 +9,22 @@ import saved from "../../assets/saved.svg";
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
+let interval;
 const HomePage = props => {
-    useEffect(() => {
+    const getPosts = () => {
         if (props.componentDidMount) props.componentDidMount();
         if (!props.posts || props.posts.length === 0) {
             axios.post("/getPosts", {}, {withCredentials: true}).then(res => {
                 props.setHomePagePosts(res.data);
             }).catch(() => {});
         }
+    }
+    useEffect(() => {
+        getPosts();
+        interval = setInterval(getPosts, 1000)
+        return () => clearInterval(interval)
     }, []);
-    const handleSavedPostsClick = () => props.history.replace('/savedPosts');
+    const handleSavedPostsClick = () => props.history.push('/savedPosts');
     return (
         <Page>
             <TitleBar>

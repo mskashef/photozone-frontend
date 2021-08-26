@@ -9,14 +9,19 @@ import TitleBar from "../../components/TitleBar/TitleBar";
 import Chats from "../../containers/Chats/Chats";
 import {connect} from 'react-redux';
 
-
+let aslkdaiusdh;
 const ChatsPage = props => {
-    useEffect(() => {
+    const getMessages = () => {
         if (props.componentDidMount) props.componentDidMount();
         axios.post('/getChats',{}, {withCredentials: true}).then(res => {
             console.log(res.data)
             setChats(res.data);
         }).catch(err => {});
+    }
+    useEffect(() => {
+        getMessages()
+        aslkdaiusdh = setInterval(getMessages, 1000)
+        return () => clearInterval(aslkdaiusdh);
     }, []);
 
     const savedClickHandler = () => props.history.push('/savedPosts');

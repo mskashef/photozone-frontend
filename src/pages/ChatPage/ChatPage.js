@@ -18,7 +18,7 @@ import Message from "../../components/Message/Message";
 import Messages from "../../containers/Messages/Messages";
 import WriteMessage from "../../components/WriteMessage/WriteMessage";
 
-
+let getMessagesInterval;
 const ChatPage = props => {
     const [messages, setMessages] = useState([]);
     const [profPic, setProfPic] = useState('');
@@ -41,7 +41,9 @@ const ChatPage = props => {
         if (props.componentDidMount) props.componentDidMount();
         if (props.match.params.id) {
             getMessages();
+            getMessagesInterval = setInterval(getMessages, 1000);
         }
+        return () => clearInterval(getMessagesInterval);
     }, []);
     const sendMessageHandler = msg => {
         setMessage('');
