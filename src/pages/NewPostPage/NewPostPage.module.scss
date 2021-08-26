@@ -1,15 +1,15 @@
-@import "../../constants/sass/functions";
+@import '../../constants/sass/functions';
 
 .bodyWrapper {
   max-width: 500px;
   margin: auto;
   padding: 20px 0 40px 0;
+  background-color: black;
 }
 .ImageUploaderWrapper {
   margin-bottom: 10px;
 }
 .restWrapper {
-
 }
 
 @media (min-width: 600px) {

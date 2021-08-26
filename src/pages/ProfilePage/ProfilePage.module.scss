@@ -1,4 +1,4 @@
-@import "../../constants/sass/functions";
+@import '../../constants/sass/functions';
 
 .Page {
   @include square(100%);
@@ -6,7 +6,6 @@
   flex: 1;
   overflow: hidden;
 }
-
 
 .Post {
   @include dimension(calc(100% - 20px), 300px);
@@ -44,12 +43,9 @@
 
 .postsContainer {
   @include row;
-  flex-flow: row wrap;
+  flex-wrap: wrap;
   justify-content: center;
   padding-bottom: 50px;
-}
-.postsContainer > * {
-  margin: 5px;
 }
 .usersContainer {
   @include col;
@@ -66,4 +62,5 @@
 }
 .buttons {
   @include row;
+  width: 100%;
 }

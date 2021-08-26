@@ -1,12 +1,11 @@
-@import "../../constants/sass/functions";
+@import '../../constants/sass/functions';
 
 .Post {
-  @include borderRadius(40px);
+  background-color: black;
   @include dimension(100%, 300px);
   max-width: 400px;
   position: relative;
   @include col;
-  @include cardShadow;
   margin: 10px;
 }
 
@@ -16,35 +15,22 @@
   background-size: cover;
   background-position: center;
   overflow: hidden;
-  @include borderRadius(30px 30px 0 0);
 }
 
 .details {
-  margin-top: -30px;
-  background-color: #FFFFFF;
-  @include borderRadius(40px 0 40px 40px);
+  background-color: #000;
   @include dimension(100%, 80px);
   position: relative;
   @include row;
   padding: 0 20px;
 }
 
-.details:after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: -40px;
-  right: 0;
-  @include square(40px);
-  z-index: 100000000000;
-  -webkit-background-size: 100% 100%;
-  background-size: 100% 100%;
-  background: url(../../assets/Post/postTopRightStyle.svg) center;
-}
 .userContainer {
   flex: 1;
   display: flex;
   align-items: center;
+  // padding-left: -40px;
+  margin-left: -10px;
 }
 
 .moreButton {
