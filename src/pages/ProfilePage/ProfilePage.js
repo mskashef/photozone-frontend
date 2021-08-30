@@ -270,6 +270,9 @@ const ProfilePage = (props) => {
             withLabel={false}
             buttonText="Choose image"
             onChange={onDrop}
+            // style={{ backgroundColor: '#444' }}
+            fileContainerStyle={{ backgroundColor: 'black' }}
+            iconStyle={{ color: 'red' }}
             imgExtension={['.jpg', '.gif', '.png']}
             maxFileSize={5242880 * 2}
           />
