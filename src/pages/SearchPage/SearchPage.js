@@ -84,7 +84,7 @@ const SearchPage = (props) => {
         placeholder={'Search...'}
       />
       <TabSelection
-        tabs={['Posts', 'Users']}
+        tabs={['Users', 'Posts']}
         activeTab={activeTab}
         onTabChange={(tab) => {
           setActiveTab(tab);

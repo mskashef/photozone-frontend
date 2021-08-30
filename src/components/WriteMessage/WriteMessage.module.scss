@@ -8,9 +8,10 @@
   margin: 0 10px 10px 10px;
   align-items: center;
   padding: 0 2px;
-  -webkit-box-shadow: 0 3px 10px 0 rgba(0,0,0,0.1);
-  -moz-box-shadow:    0 3px 10px 0 rgba(0,0,0,0.1);
-  box-shadow:         0 3px 10px 0 rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #ffffff55;
 }
 .textarea {
   background: none;
@@ -24,11 +25,17 @@
   height: 100%;
   line-height: 40px;
   padding-left: 10px;
+  color: white;
 }
-.sendMessageButton, .clipButton, .toggleEmojiButton {
+.sendMessageButton,
+.clipButton,
+.toggleEmojiButton {
   cursor: pointer;
   height: 35px;
 }
-.sendMessageButton {}
-.clipButton {}
-.toggleEmojiButton {}
+.sendMessageButton {
+}
+.clipButton {
+}
+.toggleEmojiButton {
+}

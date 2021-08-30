@@ -118,6 +118,7 @@ const NewPostPage = (props) => {
               <Tags items={tags} />
             </div>
             <Button
+              onClick={publishPostHandler}
               style={{
                 width: 'calc(100% - 20px)',
                 margin: 10,
