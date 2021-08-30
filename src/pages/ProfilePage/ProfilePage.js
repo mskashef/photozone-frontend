@@ -188,6 +188,8 @@ const ProfilePage = (props) => {
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
+                    localStorage.removeItem('token');
+                    props.history.replace('/auth');
                     handleClose();
                   }}
                 >
