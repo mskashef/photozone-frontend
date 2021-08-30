@@ -6,15 +6,21 @@ const PageDetails = (props) => {
   return (
     <div className={classes.PageDetails} onClick={props.onClick}>
       <div className={classes.col}>
-        <div id="photosCount">{props.photos}</div>
+        <div id="photosCount">
+          <b>{props.photos}</b>
+        </div>
         <div>Posts</div>
       </div>
       <div className={classes.col}>
-        <div id="followersCount">{props.followers}</div>
+        <div id="followersCount">
+          <b>{props.followers}</b>
+        </div>
         <div>Followers</div>
       </div>
       <div className={classes.col}>
-        <div id="followingsCount">{props.followings}</div>
+        <div id="followingsCount">
+          <b>{props.followings}</b>
+        </div>
         <div>Followings</div>
       </div>
     </div>
