@@ -41,9 +41,13 @@ const HomePage = (props) => {
             marginLeft: 10,
           }}
         >
-          <img src={textLogo} style={{ height: 60, marginTop: 10 }} />
+          <img
+            src={textLogo}
+            style={{ height: 60, marginTop: 10 }}
+            alt="Instagram"
+          />
         </div>
-        <div style={{}} onClick={handleSavedPostsClick}>
+        <div style={{}} onClick={() => props.history.push('/chats')}>
           <IconButton style={{ color: 'white' }}>
             <SendIcon />
           </IconButton>
@@ -67,7 +71,7 @@ const HomePage = (props) => {
                 >
                   <Avatar
                     style={{ width: 70, height: 70 }}
-                    src={`https://picsum.photos/70/70`}
+                    // src={`https://picsum.photos/70`}
                   />
                   <div style={{ color: 'white' }}>Jake</div>
                 </div>

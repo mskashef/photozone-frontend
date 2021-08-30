@@ -17,6 +17,9 @@ import { backendBaseUrl } from '../../constants/js/constants';
 import copy from 'copy-to-clipboard';
 import store from 'store';
 import KeyboardBackspace from '@material-ui/icons/KeyboardBackspace';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import MoreVert from '@material-ui/icons/MoreVert';
+import BookmarkBorder from '@material-ui/icons/BookmarkBorder';
 
 const PostPage = (props) => {
   useEffect(() => {
@@ -84,9 +87,13 @@ const PostPage = (props) => {
             right: 5,
             cursor: 'pointer',
           }}
-          onClick={savedPostsButtonHandler}
         >
-          <img alt="" style={{ cursor: 'pointer' }} src={saved} />
+          <IconButton
+            style={{ color: 'white', margin: -10 }}
+            onClick={savedPostsButtonHandler}
+          >
+            <BookmarkBorder />
+          </IconButton>
         </div>
       </TitleBar>
       <PageBody>
@@ -108,11 +115,12 @@ const PostPage = (props) => {
                   onClick={handlePublisherClick.bind(this, publisherId)}
                 />
               </div>
-              <img
-                className={classes.moreButton}
-                src={moreButton}
+              <IconButton
+                style={{ color: 'white', marginRight: -20 }}
                 onClick={handleClick}
-              />
+              >
+                <MoreVertIcon />
+              </IconButton>
               <Menu
                 id="long-menu"
                 anchorEl={anchorEl}

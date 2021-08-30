@@ -8,6 +8,8 @@ import saved from '../../assets/saved.svg';
 import TitleBar from '../../components/TitleBar/TitleBar';
 import Chats from '../../containers/Chats/Chats';
 import { connect } from 'react-redux';
+import BookmarkBorder from '@material-ui/icons/BookmarkBorder';
+import { IconButton } from '@material-ui/core';
 
 let aslkdaiusdh;
 const ChatsPage = (props) => {
@@ -48,18 +50,24 @@ const ChatsPage = (props) => {
             width: 30,
             height: 30,
             position: 'absolute',
-            right: 5,
+            right: 15,
             cursor: 'pointer',
           }}
         >
-          <img
+          <IconButton
+            style={{ color: 'white', margin: -10 }}
+            onClick={savedClickHandler}
+          >
+            <BookmarkBorder />
+          </IconButton>
+          {/* <img
             alt=""
             style={{ cursor: 'pointer' }}
             src={saved}
             onClick={() => {
               savedClickHandler();
             }}
-          />
+          /> */}
         </div>
       </TitleBar>
       <PageBody uid="ChatsPage">

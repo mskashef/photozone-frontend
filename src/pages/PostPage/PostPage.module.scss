@@ -1,4 +1,4 @@
-@import "../../constants/sass/functions";
+@import '../../constants/sass/functions';
 
 .Page {
   @include square(100%);
@@ -6,7 +6,6 @@
   flex: 1;
   overflow: hidden;
 }
-
 
 .Post {
   @include dimension(calc(100% - 20px), auto);
@@ -23,7 +22,7 @@
 }
 .photo {
   @include dimension(100%, auto);
-  @include borderRadius(10px);
+  // @include borderRadius(10px);
 }
 
 .details {
@@ -60,7 +59,8 @@
     @include row;
     justify-content: center;
   }
-  .leftSide, .rightSide {
+  .leftSide,
+  .rightSide {
     display: inline-block;
     padding: 0 10px;
   }

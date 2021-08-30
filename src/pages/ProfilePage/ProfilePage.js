@@ -20,6 +20,7 @@ import { backendBaseUrl } from '../../constants/js/constants';
 import ImageUploader from 'react-images-upload';
 import Avatar from '@material-ui/core/Avatar';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import MoreVert from '@material-ui/icons/MoreVert';
 
 const ProfilePage = (props) => {
   useEffect(() => {
@@ -125,7 +126,7 @@ const ProfilePage = (props) => {
           style={{
             color: 'white',
             width: '100%',
-            marginLeft: isMe ? 10 : 40,
+            marginLeft: 40,
             fontSize: 25,
           }}
         >
@@ -137,18 +138,17 @@ const ProfilePage = (props) => {
             height: 30,
             position: 'absolute',
             top: 14,
-            right: 5,
+            right: 10,
             cursor: 'pointer',
             textAlign: 'center',
           }}
         >
-          <img
-            alt=""
-            className={classes.moreButton}
-            src={moreButton}
+          <IconButton
+            style={{ color: 'white', margin: -12 }}
             onClick={handleClick}
-            style={{ height: 18, paddingLeft: 20 }}
-          />
+          >
+            <MoreVert />
+          </IconButton>
           <Menu
             id="long-menu"
             anchorEl={anchorEl}

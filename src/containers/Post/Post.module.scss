@@ -19,10 +19,10 @@
 
 .details {
   background-color: #000;
-  @include dimension(100%, 80px);
+  @include dimension(100%, 50px);
   position: relative;
   @include row;
-  padding: 0 20px;
+  padding: 0 15px;
 }
 
 .userContainer {
