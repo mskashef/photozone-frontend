@@ -101,7 +101,7 @@ const Post = (props) => {
           <BookmarkBorderIcon />
         </IconButton>
       </div>
-      <div style={{ color: 'white' }}>
+      <div style={{ color: 'white', padding: '0 5px' }}>
         {!more && props.caption.split('&lt%end_Of_Line%&gt').length > 1 ? (
           <>
             {props.caption.split('&lt%end_Of_Line%&gt')[0]}

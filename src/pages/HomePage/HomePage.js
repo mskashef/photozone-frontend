@@ -56,7 +56,7 @@ const HomePage = (props) => {
       </TitleBar>
 
       <PageBody uid={'HomePage'}>
-        <div style={{ display: 'flex', overflowX: 'auto' }}>
+        <div style={{ display: 'flex', overflowX: 'auto', padding: '0 10px' }}>
           {Array(10)
             .fill()
             .map((a) => {
@@ -70,7 +70,7 @@ const HomePage = (props) => {
                   }}
                 >
                   <Avatar
-                    style={{ width: 70, height: 70 }}
+                    style={{ width: 60, height: 60 }}
                     // src={`https://picsum.photos/70`}
                   />
                   <div style={{ color: 'white' }}>Jake</div>

@@ -2,7 +2,9 @@
 
 .Post {
   background-color: black;
-  @include dimension(100%, 300px);
+  // @include dimension(100%, 300px);
+  width: 100%;
+  min-height: 300px;
   max-width: 400px;
   position: relative;
   @include col;
@@ -10,11 +12,13 @@
 }
 
 .photo {
-  flex: 1;
+  // flex: 1;
   -webkit-background-size: cover;
   background-size: cover;
   background-position: center;
   overflow: hidden;
+  height: 200px !important;
+  width: 100% !important;
 }
 
 .details {
